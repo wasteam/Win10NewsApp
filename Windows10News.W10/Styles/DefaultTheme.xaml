@@ -1,0 +1,7 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--Override system colors-->
+    <x:String x:Key="SystemControlForegroundBaseHighBrush">#ffffff</x:String>
+</ResourceDictionary>

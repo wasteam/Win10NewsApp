@@ -1,0 +1,35 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+			<Color x:Key="AppBackgroundColor">#f2f2f2</Color>
+			<Color x:Key="PageTitleForegroundColor">#7e8b97</Color>
+			<Color x:Key="TitleForegroundColor">#687581</Color>
+			<Color x:Key="SubtitleForegroundColor">#5d748a</Color>
+			<Color x:Key="DescriptionForegroundColor">#5d748a</Color>
+			<Color x:Key="AppBarBackgroundColor">#0078d7</Color>
+			<Color x:Key="AppBarForegroundColor">#ffffff</Color>
+			<Color x:Key="NavigationPaneBackgroundColor">#6cade1</Color>
+			<Color x:Key="NavigationPaneTextColor">#ffffff</Color>
+			<Color x:Key="NavigationPaneButtonColor">#004174</Color>
+			<Color x:Key="BoxBackgroundColor">#0078d7</Color>
+			<Color x:Key="BoxForegroundColor">#ffffff</Color>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+            <Color x:Key="AppBackgroundColor">#ffffff</Color>
+            <Color x:Key="PageTitleForegroundColor">#000000</Color>
+            <Color x:Key="TitleForegroundColor">#000000</Color>
+            <Color x:Key="SubtitleForegroundColor">#000000</Color>
+            <Color x:Key="DescriptionForegroundColor">#000000</Color>
+            <Color x:Key="AppBarBackgroundColor">#000000</Color>
+            <Color x:Key="AppBarForegroundColor">#ffffff</Color>
+            <Color x:Key="NavigationPaneBackgroundColor">#000000</Color>
+            <Color x:Key="NavigationPaneTextColor">#ffffff</Color>
+            <Color x:Key="NavigationPaneButtonColor">#666666</Color>
+            <Color x:Key="BoxBackgroundColor">#000000</Color>
+            <Color x:Key="BoxForegroundColor">#ffffff</Color>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>

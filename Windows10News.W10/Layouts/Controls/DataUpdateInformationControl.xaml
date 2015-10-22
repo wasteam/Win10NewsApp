@@ -1,0 +1,29 @@
+<UserControl
+    x:Class="Windows10News.Layouts.Controls.DataUpdateInformationControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="LayoutRoot"
+    mc:Ignorable="d">
+    <Grid>
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Grid
+                Visibility="{Binding HasLocalData, ElementName=LayoutRoot, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=True, FallbackValue=Collapsed}">
+                <StackPanel
+                    Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                    Visibility="{Binding LastUpdateDateTime, ElementName=LayoutRoot, Converter={StaticResource StringVisibilityConverter}}">
+                    <TextBlock Foreground="{Binding Color, ElementName=LayoutRoot}" FontSize="12" x:Uid="LastUpdated"/>
+                    <TextBlock Margin="12,0,0,0" Foreground="{Binding Color, ElementName=LayoutRoot}" FontSize="12" Text="{Binding LastUpdateDateTime, ElementName=LayoutRoot}"/>
+                </StackPanel>
+            </Grid>
+            <Grid HorizontalAlignment="Right" Margin="12,0,0,0" VerticalAlignment="Bottom"
+                  Visibility="{Binding IsNetworkAvailable, ElementName=LayoutRoot, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=True}">
+                <TextBlock Text="&#x2715;" Foreground="{Binding Color, ElementName=LayoutRoot}" FontSize="6" FontFamily="Segoe UI Symbol" Margin="0,-5,25,0"/>
+                <TextBlock Text="&#xE1E9;" Foreground="{Binding Color, ElementName=LayoutRoot}" FontSize="9" FontFamily="Segoe UI Symbol"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,40 @@
+﻿{
+  "_import": "/Layouts/List/Breakpoints.Medium.json",
+  "breakpoints": [
+    {
+      "maxwidth": "500",
+      "properties": {
+        "itemsHeight": "165",
+        "titleMaxLines": "3"
+      }
+    },
+    {
+      "maxwidth": "1128",
+      "properties": {
+        "itemsHeight": "200",
+        "titleMaxLines": "4"
+      }
+    },
+    {
+      "maxwidth": "1386",
+      "properties": {
+        "itemsHeight": "220",
+        "titleMaxLines": "5"
+      }
+    },
+    {
+      "maxwidth": "1710",
+      "properties": {
+        "itemsHeight": "250",
+        "titleMaxLines": "5"
+      }
+    },
+    {
+      "maxwidth": "*",
+      "properties": {
+        "itemsHeight": "300",
+        "titleMaxLines": "5"
+      }
+    }
+  ]
+}

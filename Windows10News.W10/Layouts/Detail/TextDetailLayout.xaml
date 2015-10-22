@@ -1,0 +1,27 @@
+<local:BaseDetailLayout
+    x:Class="Windows10News.Layouts.Detail.TextDetailLayout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:was_controls="using:AppStudio.Uwp.Controls"
+    xmlns:local="using:Windows10News.Layouts.Detail"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"    
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+        <Grid>
+        <was_controls:ReadingWebView
+            x:Name="readingWebView"
+            DataContext="{Binding ViewModel.SelectedItem, Mode=TwoWay}"
+            Title="{Binding Title}" SubTitle="{Binding SubTitle}" ImageUrl="{Binding Image}" DetailContent="{Binding Description}" FlyoutEnabled="True" Background="Transparent" Foreground="{StaticResource DescriptionForeground}" ReadingWebViewNavigationCompleted="readingWebView_ReadingWebViewNavigationCompleted">
+            <was_controls:ReadingWebView.FlyoutTemplate>
+                <DataTemplate>
+                    <StackPanel HorizontalAlignment="Stretch" Background="{StaticResource AppBarBackground}"  VerticalAlignment="Top">
+                        <TextBlock Text="{Binding Title}" FontSize="{StaticResource TitleTextSizeDefault}" Foreground="{StaticResource AppBarForeground}" Style="{StaticResource TitleStyle}" MaxLines="4" Margin="24,6,24,6"/>
+                    </StackPanel>
+                </DataTemplate>
+            </was_controls:ReadingWebView.FlyoutTemplate>
+        </was_controls:ReadingWebView>
+    </Grid>
+</local:BaseDetailLayout>

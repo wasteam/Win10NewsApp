@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutButton.Label" xml:space="preserve">
+    <value>about</value>
+  </data>
+  <data name="AboutFlyout.Title" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutSection.Text" xml:space="preserve">
+    <value>about</value>
+  </data>
+  <data name="AboutSectionCapabilities.Text" xml:space="preserve">
+    <value>Application capabilities</value>
+  </data>
+  <data name="AboutSectionLicenses.Text" xml:space="preserve">
+    <value>Open source licenses</value>
+  </data>
+  <data name="AboutSectionLicensesDescription.Text" xml:space="preserve">
+    <value>This app is developed using following open source software:</value>
+  </data>
+  <data name="AdvertisementSection.Header" xml:space="preserve">
+    <value>Advertisement</value>
+  </data>
+  <data name="AppVersion.Text" xml:space="preserve">
+    <value>App version:</value>
+  </data>
+  <data name="BigTextButton.Label" xml:space="preserve">
+    <value>big text</value>
+  </data>
+  <data name="DevelopedBy.Text" xml:space="preserve">
+    <value>Developed by:</value>
+  </data>
+  <data name="FullScreenButton.Label" xml:space="preserve">
+    <value>Full Screen</value>
+  </data>
+  <data name="LastUpdated.Text" xml:space="preserve">
+    <value>Last update</value>
+  </data>
+  <data name="ListErrorNotificationControl.ErrorText" xml:space="preserve">
+    <value>There was an unexpected error loading the section data. Try to refresh later.</value>
+  </data>
+  <data name="LoadDataErrorMessage.Text" xml:space="preserve">
+    <value>There was an unexpected error loading the section data. Try to refresh later.</value>
+  </data>
+  <data name="NoConnectionAvailable.Text" xml:space="preserve">
+    <value>The video cannot be shown because there is no connection available.</value>
+  </data>
+  <data name="NormalTextButton.Label" xml:space="preserve">
+    <value>normal text</value>
+  </data>
+  <data name="PrivacyButton.Label" xml:space="preserve">
+    <value>privacy</value>
+  </data>
+  <data name="PrivacyFlyout.Title" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="PrivacyTermsButton.Text" xml:space="preserve">
+    <value>Privacy terms</value>
+  </data>
+  <data name="RefreshButton.Label" xml:space="preserve">
+    <value>refresh</value>
+  </data>
+  <data name="ShareItemButton.Label" xml:space="preserve">
+    <value>share</value>
+  </data>
+  <data name="SmallTextButton.Label" xml:space="preserve">
+    <value>small text</value>
+  </data>
+  <data name="TouchDevelopBy.Text" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="TouchDevelopPlay.Text" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="SectionListItem.ErrorText" xml:space="preserve">
+    <value>There was an unexpected error loading the section data. Try to refresh later.</value>
+  </data>
+  <data name="SectionListItem.HeaderLinkText" xml:space="preserve">
+    <value>View all</value>
+  </data>
+  <data name="ShowPresentationButton.Label" xml:space="preserve">
+    <value>Slide show</value>
+  </data>
+  <data name="ShowInfoButton.Label" xml:space="preserve">
+    <value>Show info</value>
+  </data>
+  <data name="RefreshButton.AutomationPropertiesName" xml:space="preserve">
+    <value>Press to refresh the data</value>
+  </data>
+  <data name="BigTextButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Press to set big size on text</value>
+  </data>
+  <data name="FullScreenButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Press to start full screen mode</value>
+  </data>
+  <data name="NormalTextButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Press to set normal size on text</value>
+  </data>
+  <data name="ShareItemButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Press to share</value>
+  </data>
+  <data name="ShowInfoButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Press to show or hide information</value>
+  </data>
+  <data name="ShowPresentationButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Press to start media presentation</value>
+  </data>
+  <data name="SmallTextButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Press to set small size on text</value>
+  </data>
+  <data name="NavigationPageButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Application navigation panel</value>
+  </data>
+  <data name="NarrationSubTitle" xml:space="preserve">
+    <value>subtitle</value>
+  </data>
+  <data name="NarrationTitle" xml:space="preserve">
+    <value>title</value>
+  </data>
+    <data name="NavigationPaneAbout" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="NavigationPanePrivacy" xml:space="preserve">
+    <value>Privacy terms</value>
+  </data>
+  <data name="AboutAppStudioOpenSourceLibraries.Text" xml:space="preserve">
+    <value>App Studio Open Source Libraries</value>
+  </data>
+  <data name="AboutCapabilityApplicationInsights.Text" xml:space="preserve">
+    <value>·   Application Insights</value>
+  </data>
+  <data name="AboutCapabilityInternet.Text" xml:space="preserve">
+    <value>·   Internet connection</value>
+  </data>
+  <data name="AboutCapabilityTileUpdater.Text" xml:space="preserve">
+    <value>·   Tile Updater</value>
+  </data>
+  <data name="AboutOpenProjectURL.Content" xml:space="preserve">
+    <value>Open project URL</value>
+  </data>
+</root>

@@ -1,0 +1,53 @@
+<local:ListLayoutBase
+    x:Class="Windows10News.Layouts.List.ListContactCard"
+    x:Name="root"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Windows10News.Layouts.List"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:was_controls="using:AppStudio.Uwp.Controls"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <was_controls:VisualBreakpoints x:Name="vbp" ConfigFile="/Layouts/List/Breakpoints.Large.ContactCard.json"></was_controls:VisualBreakpoints>
+    </UserControl.Resources>
+    <Grid x:Name="main">
+        <was_controls:ResponsiveGridView
+            ItemsSource="{Binding ItemsSource, ElementName=root}"
+            ItemClickCommand="{Binding ItemClickCommand, ElementName=root}"
+            Margin="0,7,2,0"
+            DesiredWidth="{Binding Active.itemsDesiredWidth, Source={StaticResource vbp}}"
+            ItemHeight="{Binding Active.itemsHeight, Source={StaticResource vbp}}"
+            OneRowModeEnabled="{Binding OneRowModeEnabled, ElementName=root}">
+            <was_controls:ResponsiveGridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="{Binding Active.itemsHeight, Source={StaticResource vbp}}">
+                        <RelativePanel Margin="{Binding Active.itemMargin, Source={StaticResource vbp}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid x:Name="image" RelativePanel.AlignLeftWithPanel="True"
+                                  Width="{Binding Active.imageWidth, Source={StaticResource vbp}}"
+                                  MaxWidth="{Binding Image, Converter={StaticResource StringToSizeConverter}}">
+                                <Ellipse Width="{Binding Active.imageWidth, Source={StaticResource vbp}}" Height="{Binding Active.imageWidth, Source={StaticResource vbp}}">
+                                    <Ellipse.Fill>
+                                        <ImageBrush Stretch="UniformToFill">
+                                            <ImageBrush.ImageSource>
+                                                <BitmapImage DecodePixelHeight="{Binding Active.imageWidth, Source={StaticResource vbp}}" DecodePixelWidth="{Binding Active.imageWidth, Source={StaticResource vbp}}" 
+                                                             UriSource="{Binding Image}" />
+                                            </ImageBrush.ImageSource>
+                                        </ImageBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Grid>
+                            <TextBlock x:Name="title" Text="{Binding Title}" Style="{StaticResource TitleStyle}" RelativePanel.RightOf="image" 
+                                       Margin="{Binding Active.leftMarginTitle, Source={StaticResource vbp}}" FontSize="{Binding Active.titleFontSize, Source={StaticResource vbp}}" MaxLines="{Binding Active.titleMaxLines, Source={StaticResource vbp}}"/>
+                            <TextBlock Text="{Binding SubTitle}" Style="{StaticResource SubtitleStyle}" RelativePanel.RightOf="image" RelativePanel.Below="title" 
+                                       Margin="{Binding Active.leftMarginSubTitle, Source={StaticResource vbp}}" FontSize="{Binding Active.subTitleFontSize, Source={StaticResource vbp}}"/>
+                        </RelativePanel>
+                    </Grid>
+                </DataTemplate>
+            </was_controls:ResponsiveGridView.ItemTemplate>
+        </was_controls:ResponsiveGridView>
+    </Grid>
+</local:ListLayoutBase>

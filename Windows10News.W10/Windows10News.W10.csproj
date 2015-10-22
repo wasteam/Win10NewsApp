@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{2D11F67F-E97F-4C7E-8448-6A342114A09A}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Windows10News</RootNamespace>
+    <AssemblyName>Windows10News.W10</AssemblyName>
+    <DefaultLanguage>en-us</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <NuGetPackageImportStamp />
+    <RestorePackages>true</RestorePackages>
+	<UapDefaultAssetScale>100</UapDefaultAssetScale>
+	<UseDotNetNativeSharedAssemblyFrameworkPackage>True</UseDotNetNativeSharedAssemblyFrameworkPackage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="Shell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\ListBigHorizontalCardBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\ListBigHorizontalCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\MenuBig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\ListBigVerticalCardBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\ListBigVerticalCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\ListContactCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\MenuMedium.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\ListPhoto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\MenuSmall.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\ListTextCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\MenuText.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\ListTouchDevelop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\Detail\MultiColumnDetailLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\Detail\PhotoDetailLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\Detail\TextDetailLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\Detail\YouTubeDetailLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\Controls\DataUpdateInformationControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\Controls\TouchDevelopPlayer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\Controls\SectionListItemHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\Controls\HeroImage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WhatsGoingOnListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RecentNewsListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AppsListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\InsiderProgramListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WhatArePeopleTalkingAboutListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DoMoreListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WhatsGoingOnDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RecentNewsDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AppsDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\InsiderProgramDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DoMoreDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\AppBarButtons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\AppTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\DefaultTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\FontSizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\AppColors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\ListBigHorizontalCardBox.xaml.cs">
+      <DependentUpon>ListBigHorizontalCardBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\ListBigHorizontalCard.xaml.cs">
+      <DependentUpon>ListBigHorizontalCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\MenuBig.xaml.cs">
+      <DependentUpon>MenuBig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\ListBigVerticalCardBox.xaml.cs">
+      <DependentUpon>ListBigVerticalCardBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\ListBigVerticalCard.xaml.cs">
+      <DependentUpon>ListBigVerticalCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\ListContactCard.xaml.cs">
+      <DependentUpon>ListContactCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\MenuMedium.xaml.cs">
+      <DependentUpon>MenuMedium.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\ListPhoto.xaml.cs">
+      <DependentUpon>ListPhoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\MenuSmall.xaml.cs">
+      <DependentUpon>MenuSmall.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\ListTextCard.xaml.cs">
+      <DependentUpon>ListTextCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\MenuText.xaml.cs">
+      <DependentUpon>MenuText.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\ListTouchDevelop.xaml.cs">
+      <DependentUpon>ListTouchDevelop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\Detail\MultiColumnDetailLayout.xaml.cs">
+      <DependentUpon>MultiColumnDetailLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\Detail\PhotoDetailLayout.xaml.cs">
+      <DependentUpon>PhotoDetailLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\Detail\TextDetailLayout.xaml.cs">
+      <DependentUpon>TextDetailLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\Detail\YouTubeDetailLayout.xaml.cs">
+      <DependentUpon>YouTubeDetailLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\Controls\DataUpdateInformationControl.xaml.cs">
+      <DependentUpon>DataUpdateInformationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\Controls\TouchDevelopPlayer.xaml.cs">
+      <DependentUpon>TouchDevelopPlayer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\Controls\SectionListItemHeader.xaml.cs">
+      <DependentUpon>SectionListItemHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\Controls\HeroImage.xaml.cs">
+      <DependentUpon>HeroImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WhatsGoingOnListPage.xaml.cs">
+      <DependentUpon>WhatsGoingOnListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecentNewsListPage.xaml.cs">
+      <DependentUpon>RecentNewsListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AppsListPage.xaml.cs">
+      <DependentUpon>AppsListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InsiderProgramListPage.xaml.cs">
+      <DependentUpon>InsiderProgramListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WhatArePeopleTalkingAboutListPage.xaml.cs">
+      <DependentUpon>WhatArePeopleTalkingAboutListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DoMoreListPage.xaml.cs">
+      <DependentUpon>DoMoreListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WhatsGoingOnDetailPage.xaml.cs">
+      <DependentUpon>WhatsGoingOnDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecentNewsDetailPage.xaml.cs">
+      <DependentUpon>RecentNewsDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AppsDetailPage.xaml.cs">
+      <DependentUpon>AppsDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InsiderProgramDetailPage.xaml.cs">
+      <DependentUpon>InsiderProgramDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DoMoreDetailPage.xaml.cs">
+      <DependentUpon>DoMoreDetailPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="project.json" />
+    <None Include="Service References\Application Insights\ConnectedService.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Config\ActionConfig.cs" />
+    <Compile Include="Config\ConfigBase.cs" />
+    <Compile Include="Config\PageConfig.cs" />
+    <Compile Include="Config\SectionConfigBase.cs" />
+    <Compile Include="DesignTime\DesignViewModel.cs" />
+    <Compile Include="Config\TouchDevelopConfigBase.cs" />
+    <Compile Include="ViewModels\TouchDevelopViewModel.cs" />
+    <Compile Include="Layouts\List\ListLayoutBase.cs" />
+    <Compile Include="Services\FullScreenService.cs" />
+    <Compile Include="Services\DeviceFamilyService.cs" />
+    <Compile Include="Navigation\NavigationNode.cs" />
+    <Compile Include="Navigation\NavigationTemplateSelector.cs" />
+    <Compile Include="Layouts\Detail\BaseDetailLayout.cs" />
+    <Compile Include="MenuExtensions.cs" />
+    <Compile Include="Services\TileServices.cs" />
+    <Compile Include="Triggers\IsTypePresentStateTrigger.cs" />
+    <Compile Include="Triggers\OrientationStateTrigger.cs" />
+    <Compile Include="Triggers\PlatformStateTrigger.cs" />
+    <Compile Include="ViewModels\ComposedItemViewModel.cs" />
+    <Compile Include="ViewModels\DetailViewModel.cs" />
+    <Compile Include="ViewModels\ItemViewModel.cs" />
+    <Compile Include="ViewModels\ListViewModel.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sections\DoMoreConfig.cs" />
+    <Compile Include="Sections\WhatsGoingOnConfig.cs" />
+    <Compile Include="Sections\RecentNewsConfig.cs" />
+    <Compile Include="Sections\AppsConfig.cs" />
+    <Compile Include="Sections\InsiderProgramConfig.cs" />
+    <Compile Include="Sections\WhatArePeopleTalkingAboutConfig.cs" />
+    <Compile Include="ViewModels\AboutThisAppViewModel.cs" />
+    <Compile Include="ViewModels\DataViewModelBase.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PrivacyViewModel.cs" />
+    <Compile Include="ViewModels\PageViewModel.cs" />
+    <Compile Include="Navigation\AppNavigation.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+        <Content Include="Layouts\List\Breakpoints.Large.ContactCard.json" />
+          <Content Include="Layouts\List\Breakpoints.Large.json" />
+          <Content Include="Layouts\List\Breakpoints.Large.ListBigHorizontalCard.json" />
+          <Content Include="Layouts\List\Breakpoints.Large.ListBigHorizontalCardBox.json" />
+          <Content Include="Layouts\List\Breakpoints.Medium.json" />
+          <Content Include="Layouts\List\Breakpoints.Medium.ListBigVerticalCard.json" />
+          <Content Include="Layouts\List\Breakpoints.Medium.ListBigVerticalCardBox.json" />
+          <Content Include="Layouts\List\Breakpoints.Medium.MenuBig.json" />
+          <Content Include="Layouts\List\Breakpoints.Medium.MenuMedium.json" />
+          <Content Include="Layouts\List\Breakpoints.Medium.MenuSmall.json" />
+          <Content Include="Layouts\List\Breakpoints.Medium.MenuText.json" />
+          <Content Include="Layouts\List\Breakpoints.Medium.Photo.json" />
+          <Content Include="Layouts\List\Breakpoints.Medium.ListTextCard.json" />
+          <Content Include="Assets\Design\DesignData.json" />
+          <Content Include="Assets\Design\DesignDataHtml.json" />
+          <Content Include="Assets\Design\DesignDataMenu.json" />
+          <Content Include="Assets\Design\DesignDataTD.json" />
+          <Content Include="Assets\Design\DetailDesignData.json" />
+          <Content Include="Assets\Design\DarkGray.png" />
+          <Content Include="Assets\Design\LightGray.png" />
+          <Content Include="Assets\Design\MediumGray.png" />
+          <Content Include="ApplicationInsights.config">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+          <Content Include="Properties\Default.rd.xml" />
+          <Content Include="Assets\ResponsiveBehaviorsVBP.json" />
+          <Content Include="Assets\ApplicationLogo.png" />
+          <Content Include="Assets\SplashScreen.scale-100.png" />
+          <Content Include="Assets\Square150x150Logo.scale-100.png" />
+          <Content Include="Assets\Square310x310Logo.scale-100.png" />
+          <Content Include="Assets\Square44x44Logo.scale-100.png" />
+          <Content Include="Assets\StoreLogo.scale-100.png" />
+          <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+          <Content Include="Assets\DataImages\HighHeroImage-2.jpg" />
+          <Content Include="Assets\DataImages\LowHeroImage.jpg" />
+          <Content Include="Assets\DataImages\rss-3.png" />
+          <Content Include="Assets\Tiles\tiles.xml" />
+    </ItemGroup>
+
+  <ItemGroup>
+    <PRIResource Include="Strings\Resources.resw" />
+  </ItemGroup>
+   <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+   <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <SDKReference Include="WindowsMobile, Version=10.0.10240.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+  </ItemGroup>
+   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+</Project>

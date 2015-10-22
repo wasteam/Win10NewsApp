@@ -1,0 +1,35 @@
+﻿{
+  "Title": "Menu",
+  "Items": [
+    {
+      "Id": "item-1",
+      "Title": "Item 1",
+      "Image": "ms-appx:///Assets/Design/LightGray.png"
+    },
+    {
+      "Id": "item-2",
+      "Title": "Item 2",
+      "Image": "ms-appx:///Assets/Design/DarkGray.png"
+    },
+    {
+      "Id": "item-3",
+      "Title": "Item 3",
+      "Image": "ms-appx:///Assets/Design/MediumGray.png"
+    },
+    {
+      "Id": "item-4",
+      "Title": "Item 4",
+      "Image": "ms-appx:///Assets/Design/LightGray.png"
+    },
+    {
+      "Id": "item-5",
+      "Title": "Item 5",
+      "Image": "ms-appx:///Assets/Design/DarkGray.png"
+    },
+    {
+      "Id": "item-6",
+      "Title": "Item 6",
+      "Image": "ms-appx:///Assets/Design/MediumGray.png"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "breakpoints": [
+    {
+      "maxwidth": "500",
+      "properties": {
+        "heroImageSource": "/Assets/DataImages/LowHeroImage.jpg",
+		"heroImageStretch": "Uniform"
+      }
+    },
+    {
+      "maxwidth": "800",
+      "properties": {
+        "heroImageSource": "/Assets/DataImages/HighHeroImage-2.jpg",
+		"heroImageStretch": "UniformToFill"
+      }
+    },
+    {
+      "maxwidth": "*",
+      "properties": {
+        "heroImageSource": "/Assets/DataImages/HighHeroImage-2.jpg",
+		"heroImageStretch": "Uniform"
+      }
+    }
+  ]
+}

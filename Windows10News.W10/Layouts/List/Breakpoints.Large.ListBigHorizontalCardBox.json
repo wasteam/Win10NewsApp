@@ -1,0 +1,55 @@
+﻿{
+  "_import": "/Layouts/List/Breakpoints.Large.json",
+  "breakpoints": [
+    {
+      "maxwidth": "500",
+      "properties": {
+        "itemsHeight": "165",
+        "imageWidth": "139",
+        "titleMaxLines": "4",
+        "leftMarginTitleBox": "10,10,10,0",
+        "leftMarginSubTitleBox": "10,10,10,10"
+      }
+    },
+    {
+      "maxwidth": "1128",
+      "properties": {
+        "itemsHeight": "200",
+        "imageWidth": "170",
+        "titleMaxLines": "4",
+        "leftMarginTitleBox": "10,10,10,0",
+        "leftMarginSubTitleBox": "10,10,10,10"
+      }
+    },
+    {
+      "maxwidth": "1386",
+      "properties": {
+        "itemsHeight": "220",
+        "imageWidth": "220",
+        "titleMaxLines": "5",
+        "leftMarginTitleBox": "12,12,12,0",
+        "leftMarginSubTitleBox": "12,12,12,12"
+      }
+    },
+    {
+      "maxwidth": "1710",
+      "properties": {
+        "itemsHeight": "250",
+        "imageWidth": "250",
+        "titleMaxLines": "5",
+        "leftMarginTitleBox": "14,14,14,0",
+        "leftMarginSubTitleBox": "14,14,14,14"
+      }
+    },
+    {
+      "maxwidth": "*",
+      "properties": {
+        "itemsHeight": "300",
+        "imageWidth": "300",
+        "titleMaxLines": "5",
+        "leftMarginTitleBox": "14,14,14,0",
+        "leftMarginSubTitleBox": "14,14,14,14"
+      }
+    }
+  ]
+}

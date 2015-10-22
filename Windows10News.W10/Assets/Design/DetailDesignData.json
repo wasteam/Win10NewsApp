@@ -1,0 +1,43 @@
+﻿{
+  "ViewModel": {
+    "Title": "Detail Page Title",
+    "SelectedItem": {
+      "Id": "item-1",
+      "PageTitle": "Pellentesentesque porta, mauris quis interdum",
+      "Title": "Item 1. Lorem ipsum ad his scripta blandit partiendo",
+      "SubTitle": "Eum hinc argumentum te, no sit percipit adversarium, ne qui feugiat persecuti. Odio omnes scripserit ad est, ut vidit lorem maiestatis his, putent mandamus gloriatur ne pro",
+      "Image": "ms-appx:///Assets/Design/LightGray.png",
+      "Description": "Item Description: Pellentesentesque porta, mauris quis interduem Description: Pellentesentesque porta, mauris quis interdum vehim vehiem Description: Pellenscription: Pellentesentesque porta, mauris quis interduem Description: Pellentesentesque porta, mauris quis interdum vehim vehiem Description: Pellentesentesque po scription: Pellentesentesque porta, mauris quis interduem Description: Pellentesentesque porta, mauris quis interdum vehim vehiem Description: Pellentesentesque potesentesque porta, mauris quis interdum vehicula, urnque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec ventesque porta, mauris quis interdum vehicula, urnenenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
+      "Content": ""
+    },
+    "Items": [
+      {
+        "Id": "item-2",
+        "PageTitle": "Pellentesentesque porta, mauris quis interdum",
+        "Title": "Item 1. Lorem ipsum ad his scripta blandit partiendo",
+        "SubTitle": "Eum hinc argumentum te, no sit percipit adversarium, ne qui feugiat persecuti. Odio omnes scripserit ad est, ut vidit lorem maiestatis his, putent mandamus gloriatur ne pro",
+        "Image": "ms-appx:///Assets/Design/LightGray.png",
+        "Description": "Item Description: Pellentesentesque porta, mauris quis interduem Description: Pellentesentesque porta, mauris quis interdum vehim vehiem Description: Pellenscription: Pellentesentesque porta, mauris quis interduem Description: Pellentesentesque porta, mauris quis interdum vehim vehiem Description: Pellentesentesque po scription: Pellentesentesque porta, mauris quis interduem Description: Pellentesentesque porta, mauris quis interdum vehim vehiem Description: Pellentesentesque potesentesque porta, mauris quis interdum vehicula, urnque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec ventesque porta, mauris quis interdum vehicula, urnenenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
+        "Content": ""
+      },
+      {
+        "Id": "item-3",
+        "PageTitle": "Pellentesentesque porta, mauris quis interdum",
+        "Title": "Item 1. Lorem ipsum ad his scripta blandit partiendo",
+        "SubTitle": "Eum hinc argumentum te, no sit percipit adversarium, ne qui feugiat persecuti. Odio omnes scripserit ad est, ut vidit lorem maiestatis his, putent mandamus gloriatur ne pro",
+        "Image": "ms-appx:///Assets/Design/LightGray.png",
+        "Description": "Item Description: Pellentesentesque porta, mauris quis interduem Description: Pellentesentesque porta, mauris quis interdum vehim vehiem Description: Pellenscription: Pellentesentesque porta, mauris quis interduem Description: Pellentesentesque porta, mauris quis interdum vehim vehiem Description: Pellentesentesque po scription: Pellentesentesque porta, mauris quis interduem Description: Pellentesentesque porta, mauris quis interdum vehim vehiem Description: Pellentesentesque potesentesque porta, mauris quis interdum vehicula, urnque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec ventesque porta, mauris quis interdum vehicula, urnenenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
+        "Content": ""
+      },
+      {
+        "Id": "item-4",
+        "PageTitle": "Pellentesentesque porta, mauris quis interdum",
+        "Title": "Item 1. Lorem ipsum ad his scripta blandit partiendo",
+        "SubTitle": "Eum hinc argumentum te, no sit percipit adversarium, ne qui feugiat persecuti. Odio omnes scripserit ad est, ut vidit lorem maiestatis his, putent mandamus gloriatur ne pro",
+        "Image": "ms-appx:///Assets/Design/LightGray.png",
+        "Description": "Item Description: Pellentesentesque porta, mauris quis interduem Description: Pellentesentesque porta, mauris quis interdum vehim vehiem Description: Pellenscription: Pellentesentesque porta, mauris quis interduem Description: Pellentesentesque porta, mauris quis interdum vehim vehiem Description: Pellentesentesque po scription: Pellentesentesque porta, mauris quis interduem Description: Pellentesentesque porta, mauris quis interdum vehim vehiem Description: Pellentesentesque potesentesque porta, mauris quis interdum vehicula, urnque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec ventesque porta, mauris quis interdum vehicula, urnenenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
+        "Content": ""
+      }
+    ]
+  }
+}

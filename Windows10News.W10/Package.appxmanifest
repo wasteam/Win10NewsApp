@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:appstudio="http://schemas.microsoft.com/developer/appx/2015/appstudio" 
+  IgnorableNamespaces="uap mp appstudio">
+			<Identity Name="MicrosoftWindowsAppStudio.Windows10NewsFeed" Publisher="CN=687403C5-72F1-42B7-87C2-A050E9459F28" Version="1.3.4.0" />
+	    <mp:PhoneIdentity PhoneProductId="89687e1a-67b4-4f3f-91e9-28562cc2dcc5" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+    <Properties>
+        <DisplayName>Windows 10 News Feed</DisplayName>
+        <PublisherDisplayName>Microsoft Windows App Studio</PublisherDisplayName>
+        <Logo>Assets\StoreLogo.png</Logo>
+    </Properties>
+    <Dependencies>
+        <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.10240.0" MaxVersionTested="10.0.10240.0" />
+    </Dependencies>
+    <Resources>
+        <Resource Language="x-generate"/>
+    </Resources>
+    <Applications>
+        <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Windows10News.App">
+            <uap:VisualElements 
+			  DisplayName="Windows 10 News"
+              Square150x150Logo="Assets\Square150x150Logo.png"
+              Square44x44Logo="Assets\Square44x44Logo.png"
+              Description="Windows 10 News App!"
+              BackgroundColor="#0078d7">
+                <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#0078d7"/>
+                <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\Square310x310Logo.png">
+                    <uap:ShowNameOnTiles>
+                        <uap:ShowOn Tile="square150x150Logo"/>
+						<uap:ShowOn Tile="square310x310Logo" />
+                    </uap:ShowNameOnTiles>
+                </uap:DefaultTile>
+            </uap:VisualElements>
+        </Application>
+    </Applications>
+    <Capabilities>
+        <Capability Name="internetClient" />
+    </Capabilities>
+    <appstudio:Metadata>
+        <appstudio:Item Name="appId" Value="89687e1a-67b4-4f3f-91e9-28562cc2dcc5" />
+        <appstudio:Item Name="model" Version="1.12" />
+        <appstudio:Item Name="formula" Value="Win10" Version="1.11.1021.1" />
+        <appstudio:Item DataSource="Rss" Version="1.0.*"/>
+        <appstudio:Item DataSource="Twitter" Version="1.0.*"/>
+        <appstudio:Item DataSource="Instagram" Version="1.0.*"/>
+    </appstudio:Metadata>
+</Package>
