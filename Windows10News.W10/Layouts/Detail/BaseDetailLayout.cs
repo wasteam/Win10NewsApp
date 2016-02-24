@@ -12,7 +12,7 @@ namespace Windows10News.Layouts.Detail
     public abstract class BaseDetailLayout : UserControl, INotifyPropertyChanged
     {
         public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof(object), typeof(BaseDetailLayout), new PropertyMetadata(null));
+            DependencyProperty.Register("ViewModel", typeof(DetailViewModel), typeof(BaseDetailLayout), new PropertyMetadata(null));
 
         public static readonly DependencyProperty BodyFontSizeProperty
             = DependencyProperty.Register("BodyFontSize", typeof(int), typeof(BaseDetailLayout), new PropertyMetadata(0));
@@ -23,9 +23,9 @@ namespace Windows10News.Layouts.Detail
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public object ViewModel
+        public DetailViewModel ViewModel
         {
-            get { return GetValue(ViewModelProperty); }
+            get { return (DetailViewModel)GetValue(ViewModelProperty); }
             set { SetValue(ViewModelProperty, value); }
         }
         public int BodyFontSize
@@ -34,8 +34,6 @@ namespace Windows10News.Layouts.Detail
             set { SetValue(BodyFontSizeProperty, value); }
         }
 
-        public abstract void UpdateFontSize();
-
         public void OnPropertyChanged(string propertyName)
         {
             var eventHandler = PropertyChanged;
@@ -43,22 +41,6 @@ namespace Windows10News.Layouts.Detail
             {
                 eventHandler(this, new PropertyChangedEventArgs(propertyName));
             }
-        }
-
-        protected List<Control> AllChildren(DependencyObject parent)
-        {
-            var list = new List<Control>();
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
-            {
-                var child = VisualTreeHelper.GetChild(parent, i);
-                if (child is Control)
-                {
-                    list.Add(child as Control);
-                }
-                list.AddRange(AllChildren(child));
-            }
-
-            return list;
         }
     }
 }

@@ -16,6 +16,7 @@
     <SolidColorBrush x:Key="NavigationPaneBackground" Color="{StaticResource NavigationPaneBackgroundColor}"/>
     <SolidColorBrush x:Key="NavigationPaneText" Color="{StaticResource NavigationPaneTextColor}"/>
     <SolidColorBrush x:Key="NavigationPaneButton" Color="{StaticResource NavigationPaneButtonColor}"/>
+	<SolidColorBrush x:Key="NavigationPaneButtonForeground" Color="{StaticResource NavigationPaneButtonForegroundColor}"/>
     <!--Tile Brushes-->
     <SolidColorBrush x:Key="BoxBackground" Color="{StaticResource BoxBackgroundColor}"/>
     <SolidColorBrush x:Key="BoxForeground" Color="{StaticResource BoxForegroundColor}"/>
@@ -25,7 +26,7 @@
     <Style TargetType="TextBlock" x:Key="BaseTextStyle">
         <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="TextTrimming" Value="WordEllipsis"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
     </Style>
     <Style TargetType="TextBlock" x:Key="SplitMenuItemStyle">
         <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
@@ -40,7 +41,7 @@
     <Style TargetType="TextBlock" x:Key="PageTitleStyle">
         <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
         <Setter Property="Foreground" Value="{StaticResource PageTitleForegroundColor}"/>
-        <Setter Property="FontWeight" Value="SegoeUIBold"/>
+        <Setter Property="FontWeight" Value="SegoeUILight"/>
     </Style>
     <Style TargetType="TextBlock" x:Key="TitleStyle" BasedOn="{StaticResource BaseTextStyle}">
         <Setter Property="Foreground" Value="{StaticResource TitleForegroundColor}"/>
@@ -51,7 +52,7 @@
     </Style>
     <Style TargetType="TextBlock" x:Key="SubtitleStyle" BasedOn="{StaticResource BaseTextStyle}">
         <Setter Property="Foreground" Value="{StaticResource SubtitleForegroundColor}"/>
-        <Setter Property="FontWeight" Value="SegoeUILight"/>
+        <Setter Property="FontWeight" Value="SegoeUI"/>
     </Style>
     <Style TargetType="TextBlock" x:Key="DescriptionStyle" BasedOn="{StaticResource BaseTextStyle}">
         <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundColor}"/>
@@ -59,7 +60,7 @@
     </Style>
     <Style TargetType="TextBlock" x:Key="ErrorStyle" BasedOn="{StaticResource BaseTextStyle}">
         <Setter Property="Foreground" Value="{StaticResource SubtitleForeground}"/>
-        <Setter Property="FontWeight" Value="SegoeUILight"/>
+        <Setter Property="FontWeight" Value="SegoeUI"/>
     </Style>
     <Style TargetType="TextBlock" x:Key="BoxTitleStyle" BasedOn="{StaticResource TitleStyle}">
         <Setter Property="Foreground" Value="{StaticResource BoxForegroundColor}"/>
@@ -69,5 +70,11 @@
     </Style>
     <Style TargetType="Grid" x:Key="BoxGrid">
         <Setter Property="Background" Value="{StaticResource BoxBackground}"/>
+    </Style>
+	<Style TargetType="was_controls:SearchBox" x:Key="wasSearchBox">
+        <Setter Property="Foreground" Value="{StaticResource AppBarForeground}"/>
+        <Setter Property="Background" Value="{StaticResource AppBarBackground}"/>
+        <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
     </Style>
 </ResourceDictionary>

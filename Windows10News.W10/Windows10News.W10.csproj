@@ -5,14 +5,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{2D11F67F-E97F-4C7E-8448-6A342114A09A}</ProjectGuid>
+    <ProjectGuid>{5E12BE8E-4CD6-4345-8769-734D936B08F8}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Windows10News</RootNamespace>
     <AssemblyName>Windows10News.W10</AssemblyName>
     <DefaultLanguage>en-us</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
@@ -111,7 +111,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Include="Shell.xaml">
+    <Page Include="PivotShell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -159,7 +159,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Layouts\List\ListTouchDevelop.xaml">
+    <Page Include="Layouts\List\CarouselBig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\CarouselMedium.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\ListGroupedHome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Layouts\List\ListGrouped.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -179,11 +191,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Layouts\Controls\DataUpdateInformationControl.xaml">
+    <Page Include="Layouts\Detail\RelatedContentDetailLayout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Layouts\Controls\TouchDevelopPlayer.xaml">
+    <Page Include="Layouts\Controls\DataUpdateInformationControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -195,55 +207,75 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\HomePage.xaml">
+    <Page Include="Pages\WhatsGoingOnListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\WhatsGoingOnListPage.xaml">
+    <Page Include="Pages\RecentNewsListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\RecentNewsListPage.xaml">
+    <Page Include="Pages\AppsListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AppsListPage.xaml">
+    <Page Include="Pages\BusinessListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\InsiderProgramListPage.xaml">
+    <Page Include="Pages\InsiderProgramListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\WhatArePeopleTalkingAboutListPage.xaml">
+    <Page Include="Pages\DevsListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\DoMoreListPage.xaml">
+    <Page Include="Pages\WhatArePeopleTalkingAboutListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AboutPage.xaml">
+    <Page Include="Pages\DoMoreListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\WhatsGoingOnDetailPage.xaml">
+    <Page Include="Pages\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\RecentNewsDetailPage.xaml">
+    <Page Include="Pages\WhatsGoingOnDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AppsDetailPage.xaml">
+    <Page Include="Pages\RecentNewsDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\InsiderProgramDetailPage.xaml">
+    <Page Include="Pages\AppsDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\DoMoreDetailPage.xaml">
+    <Page Include="Pages\BusinessDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\InsiderProgramDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\DevsDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\DoMoreDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\PivotHomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SearchPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -271,11 +303,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\SectionListStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\DetailStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Shell.xaml.cs">
-      <DependentUpon>Shell.xaml</DependentUpon>
+    <Compile Include="PivotShell.xaml.cs">
+      <DependentUpon>PivotShell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Layouts\List\ListBigHorizontalCardBox.xaml.cs">
       <DependentUpon>ListBigHorizontalCardBox.xaml</DependentUpon>
@@ -310,8 +350,17 @@
     <Compile Include="Layouts\List\MenuText.xaml.cs">
       <DependentUpon>MenuText.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Layouts\List\ListTouchDevelop.xaml.cs">
-      <DependentUpon>ListTouchDevelop.xaml</DependentUpon>
+    <Compile Include="Layouts\List\CarouselBig.xaml.cs">
+      <DependentUpon>CarouselBig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\CarouselMedium.xaml.cs">
+      <DependentUpon>CarouselMedium.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\ListGroupedHome.xaml.cs">
+      <DependentUpon>ListGroupedHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\List\ListGrouped.xaml.cs">
+      <DependentUpon>ListGrouped.xaml</DependentUpon>
     </Compile>
     <Compile Include="Layouts\Detail\MultiColumnDetailLayout.xaml.cs">
       <DependentUpon>MultiColumnDetailLayout.xaml</DependentUpon>
@@ -325,11 +374,11 @@
     <Compile Include="Layouts\Detail\YouTubeDetailLayout.xaml.cs">
       <DependentUpon>YouTubeDetailLayout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Layouts\Detail\RelatedContentDetailLayout.xaml.cs">
+      <DependentUpon>RelatedContentDetailLayout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Layouts\Controls\DataUpdateInformationControl.xaml.cs">
       <DependentUpon>DataUpdateInformationControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Layouts\Controls\TouchDevelopPlayer.xaml.cs">
-      <DependentUpon>TouchDevelopPlayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Layouts\Controls\SectionListItemHeader.xaml.cs">
       <DependentUpon>SectionListItemHeader.xaml</DependentUpon>
@@ -337,44 +386,59 @@
     <Compile Include="Layouts\Controls\HeroImage.xaml.cs">
       <DependentUpon>HeroImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\WhatsGoingOnListPage.xaml.cs">
+    <Compile Include="Pages\WhatsGoingOnListPage.xaml.cs">
       <DependentUpon>WhatsGoingOnListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RecentNewsListPage.xaml.cs">
+    <Compile Include="Pages\RecentNewsListPage.xaml.cs">
       <DependentUpon>RecentNewsListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AppsListPage.xaml.cs">
+    <Compile Include="Pages\AppsListPage.xaml.cs">
       <DependentUpon>AppsListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\InsiderProgramListPage.xaml.cs">
+    <Compile Include="Pages\BusinessListPage.xaml.cs">
+      <DependentUpon>BusinessListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InsiderProgramListPage.xaml.cs">
       <DependentUpon>InsiderProgramListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WhatArePeopleTalkingAboutListPage.xaml.cs">
+    <Compile Include="Pages\DevsListPage.xaml.cs">
+      <DependentUpon>DevsListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WhatArePeopleTalkingAboutListPage.xaml.cs">
       <DependentUpon>WhatArePeopleTalkingAboutListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DoMoreListPage.xaml.cs">
+    <Compile Include="Pages\DoMoreListPage.xaml.cs">
       <DependentUpon>DoMoreListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AboutPage.xaml.cs">
+    <Compile Include="Pages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WhatsGoingOnDetailPage.xaml.cs">
+    <Compile Include="Pages\WhatsGoingOnDetailPage.xaml.cs">
       <DependentUpon>WhatsGoingOnDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RecentNewsDetailPage.xaml.cs">
+    <Compile Include="Pages\RecentNewsDetailPage.xaml.cs">
       <DependentUpon>RecentNewsDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AppsDetailPage.xaml.cs">
+    <Compile Include="Pages\AppsDetailPage.xaml.cs">
       <DependentUpon>AppsDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\InsiderProgramDetailPage.xaml.cs">
+    <Compile Include="Pages\BusinessDetailPage.xaml.cs">
+      <DependentUpon>BusinessDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InsiderProgramDetailPage.xaml.cs">
       <DependentUpon>InsiderProgramDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DoMoreDetailPage.xaml.cs">
+    <Compile Include="Pages\DevsDetailPage.xaml.cs">
+      <DependentUpon>DevsDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DoMoreDetailPage.xaml.cs">
       <DependentUpon>DoMoreDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PivotHomePage.xaml.cs">
+      <DependentUpon>PivotHomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -385,40 +449,47 @@
 
   <ItemGroup>
     <Compile Include="Config\ActionConfig.cs" />
-    <Compile Include="Config\ConfigBase.cs" />
     <Compile Include="Config\PageConfig.cs" />
     <Compile Include="Config\SectionConfigBase.cs" />
     <Compile Include="DesignTime\DesignViewModel.cs" />
-    <Compile Include="Config\TouchDevelopConfigBase.cs" />
-    <Compile Include="ViewModels\TouchDevelopViewModel.cs" />
     <Compile Include="Layouts\List\ListLayoutBase.cs" />
     <Compile Include="Services\FullScreenService.cs" />
     <Compile Include="Services\DeviceFamilyService.cs" />
+    <Compile Include="ViewModels\AdvertisingViewModel.cs" />
+    <Compile Include="Config\RelatedContentConfig.cs" />
+    <Compile Include="ViewModels\GroupedItemViewModel.cs" />
+    <Compile Include="Services\RoamingService.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="ViewModels\GroupedListViewModel.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Navigation\NavigationNode.cs" />
     <Compile Include="Navigation\NavigationTemplateSelector.cs" />
     <Compile Include="Layouts\Detail\BaseDetailLayout.cs" />
-    <Compile Include="MenuExtensions.cs" />
+    <Compile Include="Extensions\MenuExtensions.cs" />
     <Compile Include="Services\TileServices.cs" />
     <Compile Include="Triggers\IsTypePresentStateTrigger.cs" />
     <Compile Include="Triggers\OrientationStateTrigger.cs" />
     <Compile Include="Triggers\PlatformStateTrigger.cs" />
     <Compile Include="ViewModels\ComposedItemViewModel.cs" />
-    <Compile Include="ViewModels\DetailViewModel.cs" />
+    <Compile Include="ViewModels\PageViewModelBase.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
-    <Compile Include="ViewModels\ListViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sections\DoMoreConfig.cs" />
     <Compile Include="Sections\WhatsGoingOnConfig.cs" />
     <Compile Include="Sections\RecentNewsConfig.cs" />
     <Compile Include="Sections\AppsConfig.cs" />
+    <Compile Include="Sections\BusinessConfig.cs" />
     <Compile Include="Sections\InsiderProgramConfig.cs" />
+    <Compile Include="Sections\DevsConfig.cs" />
     <Compile Include="Sections\WhatArePeopleTalkingAboutConfig.cs" />
     <Compile Include="ViewModels\AboutThisAppViewModel.cs" />
-    <Compile Include="ViewModels\DataViewModelBase.cs" />
+    <Compile Include="ViewModels\DetailViewModel.cs" />
+    <Compile Include="ViewModels\ListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PrivacyViewModel.cs" />
-    <Compile Include="ViewModels\PageViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="Navigation\AppNavigation.cs" />
   </ItemGroup>
 
@@ -436,6 +507,8 @@
           <Content Include="Layouts\List\Breakpoints.Medium.MenuText.json" />
           <Content Include="Layouts\List\Breakpoints.Medium.Photo.json" />
           <Content Include="Layouts\List\Breakpoints.Medium.ListTextCard.json" />
+          <Content Include="Layouts\List\Breakpoints.ListGrouped.json" />
+          <Content Include="Layouts\List\Breakpoints.Large.ListBigHorizontalCardGroupedHome.json" />
           <Content Include="Assets\Design\DesignData.json" />
           <Content Include="Assets\Design\DesignDataHtml.json" />
           <Content Include="Assets\Design\DesignDataMenu.json" />
@@ -449,17 +522,15 @@
 	  </Content>
           <Content Include="Properties\Default.rd.xml" />
           <Content Include="Assets\ResponsiveBehaviorsVBP.json" />
+          <Content Include="Assets\RelatedContentVBP.json" />
           <Content Include="Assets\ApplicationLogo.png" />
           <Content Include="Assets\SplashScreen.scale-100.png" />
           <Content Include="Assets\Square150x150Logo.scale-100.png" />
           <Content Include="Assets\Square310x310Logo.scale-100.png" />
           <Content Include="Assets\Square44x44Logo.scale-100.png" />
+          <Content Include="Assets\Square71x71Logo.scale-100.png" />
           <Content Include="Assets\StoreLogo.scale-100.png" />
           <Content Include="Assets\Wide310x150Logo.scale-100.png" />
-          <Content Include="Assets\DataImages\HighHeroImage-2.jpg" />
-          <Content Include="Assets\DataImages\LowHeroImage.jpg" />
-          <Content Include="Assets\DataImages\rss-3.png" />
-          <Content Include="Assets\Tiles\tiles.xml" />
     </ItemGroup>
 
   <ItemGroup>
@@ -470,7 +541,7 @@
   </ItemGroup>
    <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <SDKReference Include="WindowsMobile, Version=10.0.10240.0">
+    <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>

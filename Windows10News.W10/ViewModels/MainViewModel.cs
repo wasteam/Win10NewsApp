@@ -2,13 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AppStudio.Uwp;
-using AppStudio.Uwp.Actions;
-using AppStudio.Uwp.Commands;
-using AppStudio.Uwp.Navigation;
-using AppStudio.DataProviders;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System.Windows.Input;
+using AppStudio.Uwp;
+using AppStudio.Uwp.Actions;
+using AppStudio.Uwp.Navigation;
+using AppStudio.Uwp.Commands;
+using AppStudio.DataProviders;
+
 using AppStudio.DataProviders.Rss;
 using AppStudio.DataProviders.Twitter;
 using AppStudio.DataProviders.Instagram;
@@ -18,17 +20,20 @@ using Windows10News.Sections;
 
 namespace Windows10News.ViewModels
 {
-    public class MainViewModel : PageViewModel
+    public class MainViewModel : ObservableBase
     {
         public MainViewModel(int visibleItems) : base()
         {
             PageTitle = "Windows 10 News";
-            WhatsGoingOn = new ListViewModel<RssDataConfig, RssSchema>(new WhatsGoingOnConfig(), visibleItems);
-            RecentNews = new ListViewModel<RssDataConfig, RssSchema>(new RecentNewsConfig(), visibleItems);
-            Apps = new ListViewModel<RssDataConfig, RssSchema>(new AppsConfig(), visibleItems);
-            InsiderProgram = new ListViewModel<RssDataConfig, RssSchema>(new InsiderProgramConfig(), visibleItems);
-            WhatArePeopleTalkingAbout = new ListViewModel<TwitterDataConfig, TwitterSchema>(new WhatArePeopleTalkingAboutConfig(), visibleItems);
-            DoMore = new ListViewModel<InstagramDataConfig, InstagramSchema>(new DoMoreConfig(), visibleItems);
+            WhatsGoingOn = ListViewModel.CreateNew(Singleton<WhatsGoingOnConfig>.Instance, visibleItems);
+            RecentNews = ListViewModel.CreateNew(Singleton<RecentNewsConfig>.Instance, visibleItems);
+            Apps = ListViewModel.CreateNew(Singleton<AppsConfig>.Instance, visibleItems);
+            Business = ListViewModel.CreateNew(Singleton<BusinessConfig>.Instance, visibleItems);
+            InsiderProgram = ListViewModel.CreateNew(Singleton<InsiderProgramConfig>.Instance, visibleItems);
+            Devs = ListViewModel.CreateNew(Singleton<DevsConfig>.Instance, visibleItems);
+            WhatArePeopleTalkingAbout = ListViewModel.CreateNew(Singleton<WhatArePeopleTalkingAboutConfig>.Instance, visibleItems);
+            DoMore = ListViewModel.CreateNew(Singleton<DoMoreConfig>.Instance, visibleItems);
+
             Actions = new List<ActionInfo>();
 
             if (GetViewModels().Any(vm => !vm.HasLocalData))
@@ -41,15 +46,24 @@ namespace Windows10News.ViewModels
                     ActionType = ActionType.Primary
                 });
             }
+			Actions.Add(new ActionInfo
+            {
+                Command = new RelayCommand(() => NavigationService.NavigateTo(new Uri("http://appstudio.windows.com/home/appprivacyterms", UriKind.Absolute))),
+                Style = ActionKnownStyles.Link,
+                Name = "PrivacyButton",
+                ActionType = ActionType.Secondary
+            });
         }
 
         public string PageTitle { get; set; }
-        public ListViewModel<RssDataConfig, RssSchema> WhatsGoingOn { get; private set; }
-        public ListViewModel<RssDataConfig, RssSchema> RecentNews { get; private set; }
-        public ListViewModel<RssDataConfig, RssSchema> Apps { get; private set; }
-        public ListViewModel<RssDataConfig, RssSchema> InsiderProgram { get; private set; }
-        public ListViewModel<TwitterDataConfig, TwitterSchema> WhatArePeopleTalkingAbout { get; private set; }
-        public ListViewModel<InstagramDataConfig, InstagramSchema> DoMore { get; private set; }
+        public ListViewModel WhatsGoingOn { get; private set; }
+        public ListViewModel RecentNews { get; private set; }
+        public ListViewModel Apps { get; private set; }
+        public ListViewModel Business { get; private set; }
+        public ListViewModel InsiderProgram { get; private set; }
+        public ListViewModel Devs { get; private set; }
+        public ListViewModel WhatArePeopleTalkingAbout { get; private set; }
+        public ListViewModel DoMore { get; private set; }
 
         public RelayCommand<INavigable> SectionHeaderClickCommand
         {
@@ -59,6 +73,17 @@ namespace Windows10News.ViewModels
                     {
                         NavigationService.NavigateTo(item);
                     });
+            }
+        }
+		public ICommand SearchCommand
+        {
+            get
+            {
+                return new RelayCommand<string>(
+                (text) =>
+                {
+                    NavigationService.NavigateToPage("SearchPage", text);
+                }, SearchViewModel.CanSearch);
             }
         }
 
@@ -90,34 +115,24 @@ namespace Windows10News.ViewModels
             OnPropertyChanged("LastUpdated");
         }
 
-		public override void UpdateCommonProperties(SplitViewDisplayMode splitViewDisplayMode)
-        {
-            base.UpdateCommonProperties(splitViewDisplayMode);
-            if (splitViewDisplayMode == SplitViewDisplayMode.Overlay)
-            {
-                AppBarRow = 3;
-                AppBarColumn = 0;
-                AppBarColumnSpan = 2;
-            }
-        }
-
         private async void Refresh()
         {
             var refreshDataTasks = GetViewModels()
-                                        .Where(vm => !vm.HasLocalData)
-                                        .Select(vm => vm.LoadDataAsync(true));
+                                        .Where(vm => !vm.HasLocalData).Select(vm => vm.LoadDataAsync(true));
 
             await Task.WhenAll(refreshDataTasks);
 
             OnPropertyChanged("LastUpdated");
         }
 
-        private IEnumerable<DataViewModelBase> GetViewModels()
+        private IEnumerable<ListViewModel> GetViewModels()
         {
             yield return WhatsGoingOn;
             yield return RecentNews;
             yield return Apps;
+            yield return Business;
             yield return InsiderProgram;
+            yield return Devs;
             yield return WhatArePeopleTalkingAbout;
             yield return DoMore;
         }

@@ -25,6 +25,8 @@
                 <ResourceDictionary Source="Styles/AppTheme.xaml"/>
                 <ResourceDictionary Source="Styles/ButtonStyles.xaml"/>
                 <ResourceDictionary Source="Styles/AppBarButtons.xaml"/>
+				<ResourceDictionary Source="Styles/SectionListStyles.xaml"/>
+				<ResourceDictionary Source="Styles/DetailStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -7,40 +7,38 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:was_controls="using:AppStudio.Uwp.Controls"
+    xmlns:vm="using:Windows10News.ViewModels"
     DataContext="{Binding RelativeSource={RelativeSource Self}}"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    <UserControl.Resources>
+    <Grid>
         <was_controls:VisualBreakpoints x:Name="vbp" ConfigFile="/Layouts/List/Breakpoints.Medium.ListTextCard.json"></was_controls:VisualBreakpoints>
-    </UserControl.Resources>
-    <Grid x:Name="main">
         <was_controls:ResponsiveGridView
             x:Name="responsiveGridView"
             ItemsSource="{Binding ItemsSource, ElementName=root}"
-            Margin="0,7,2,0"
             ItemClickCommand="{Binding ItemClickCommand, ElementName=root}"
-            DesiredWidth="{Binding Active.itemsDesiredWidth, Source={StaticResource vbp}}"
-            ItemHeight="{Binding Active.itemsHeight, Source={StaticResource vbp}}"
+            DesiredWidth="{Binding Active.itemsDesiredWidth, ElementName=vbp}"
+            ItemHeight="{Binding Active.itemsHeight, ElementName=vbp}"
             OneRowModeEnabled="{Binding OneRowModeEnabled, ElementName=root}">
             <was_controls:ResponsiveGridView.ItemTemplate>
-                <DataTemplate>
-                    <Grid
-                        Height="{Binding Active.itemsHeight, Source={StaticResource vbp}}">
+                <DataTemplate x:DataType="vm:ItemViewModel">
+                    <Grid                        
+                        Height="{Binding Active.itemsHeight, ElementName=vbp}">
                         <RelativePanel
                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                            Margin="{Binding Active.itemMargin, Source={StaticResource vbp}}">
-                            <TextBlock x:Name="title"
-                                Text="{Binding Title}" Style="{StaticResource TitleStyle}"
-                                FontSize="{Binding Active.titleFontSize, Source={StaticResource vbp}}"
-                                MaxLines="{Binding Active.titleMaxLines, Source={StaticResource vbp}}"
+                            Margin="{Binding Active.itemMargin, ElementName=vbp}">
+                            <TextBlock x:Name="title"                                       
+                                Text="{x:Bind Title, Mode=OneWay}" Style="{StaticResource TitleStyle}"
+                                FontSize="{Binding Active.titleFontSize, ElementName=vbp}"
+                                MaxLines="{Binding Active.titleMaxLines, ElementName=vbp}"
                                 RelativePanel.AlignTopWithPanel="True"/>
                             <TextBlock
-                                Text="{Binding SubTitle}"
+                                Text="{x:Bind SubTitle, Mode=OneWay}"
                                 Style="{StaticResource SubtitleStyle}"
                                 Margin="0,6,0,0"
                                 RelativePanel.Below="title"
-                                FontSize="{Binding Active.subTitleFontSize, Source={StaticResource vbp}}"/>
+                                FontSize="{Binding Active.subTitleFontSize, ElementName=vbp}"/>
                         </RelativePanel>
                     </Grid>
                 </DataTemplate>

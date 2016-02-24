@@ -17,9 +17,7 @@ namespace Windows10News.ViewModels
         private bool _navPanelOpened;
         private bool _checkSizeChanged = true;
         private SplitViewDisplayMode _splitViewDisplayMode;
-        private bool _isFullScreen;
-
-        public static event EventHandler<SplitViewDisplayMode> SplitViewDisplayModeChanged;
+        private bool _isFullScreen;        
 
         public ShellViewModel()
         {
@@ -68,11 +66,7 @@ namespace Windows10News.ViewModels
         public SplitViewDisplayMode SplitViewDisplayMode
         {
             get { return _splitViewDisplayMode; }
-            set
-            {
-                SetProperty(ref _splitViewDisplayMode, value);
-                RaiseSplitViewDisplayModeChanged(value);
-            }
+            set { SetProperty(ref _splitViewDisplayMode, value); }
         }
 
         public ICommand ItemSelected
@@ -90,9 +84,13 @@ namespace Windows10News.ViewModels
         {
             get
             {
-                return new RelayCommand(() =>
+                return new RelayCommand(async () =>
                 {
-                    NavPanelOpened = !NavPanelOpened;
+                    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                    () =>
+                    {
+                        NavPanelOpened = !NavPanelOpened;
+                    });
                 });
             }
         }
@@ -111,7 +109,7 @@ namespace Windows10News.ViewModels
             {
                 return;
             }
-            if (width <= 800)
+            if (width < 800)
             {
                 this.SplitViewDisplayMode = SplitViewDisplayMode.Overlay;
             }
@@ -160,16 +158,8 @@ namespace Windows10News.ViewModels
             {
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             }
-            OnPropertyChanged("GoBackCommand");
-            RaiseSplitViewDisplayModeChanged(SplitViewDisplayMode);
+            OnPropertyChanged("GoBackCommand");            
         }
-
-        private void RaiseSplitViewDisplayModeChanged(SplitViewDisplayMode splitViewDisplayMode)
-        {
-            if (SplitViewDisplayModeChanged != null)
-            {
-                SplitViewDisplayModeChanged(null, splitViewDisplayMode);
-            }
-        }
+        
     }
 }

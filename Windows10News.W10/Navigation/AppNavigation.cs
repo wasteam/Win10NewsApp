@@ -44,61 +44,43 @@ namespace Windows10News.Navigation
         {
             Nodes = new ObservableCollection<NavigationNode>();
 		    var resourceLoader = new ResourceLoader();
-            Nodes.Add(new ItemNavigationNode
-            {
-                Title = @"Windows 10 News",
-                Label = "Home",
-                FontIcon = "\ue10f",
-                IsSelected = true,
-                NavigationInfo = NavigationInfo.FromPage("HomePage")
-            });
+			AddNode(Nodes, "Home", "\ue10f", string.Empty, "HomePage", true, @"Windows 10 News");
+			AddNode(Nodes, "What's going on", "\ue12a", string.Empty, "WhatsGoingOnListPage", true);			
+			AddNode(Nodes, "Recent news", "\ue12a", string.Empty, "RecentNewsListPage", true);			
+			AddNode(Nodes, "Apps", "\ue12a", string.Empty, "AppsListPage", true);			
+			AddNode(Nodes, "Business", "\ue12a", string.Empty, "BusinessListPage", true);			
+			AddNode(Nodes, "Insider program", "\ue12a", string.Empty, "InsiderProgramListPage", true);			
+			AddNode(Nodes, "Devs", "\ue12a", string.Empty, "DevsListPage", true);			
+			AddNode(Nodes, "What are people talking about", "\ue134", string.Empty, "WhatArePeopleTalkingAboutListPage", true);			
+			AddNode(Nodes, "Do more", "\ue12d", string.Empty, "DoMoreListPage", true);			
+			AddNode(Nodes, resourceLoader.GetString("NavigationPaneAbout"), "\ue11b", string.Empty, "AboutPage");
+			AddNode(Nodes, resourceLoader.GetString("NavigationPanePrivacy"), "\ue1f7", string.Empty, string.Empty, true, string.Empty, "http://appstudio.windows.com/home/appprivacyterms");            
+        }
 
-            Nodes.Add(new ItemNavigationNode
+		private void AddNode(ObservableCollection<NavigationNode> nodes, string label, string fontIcon, string image, string pageName, bool isVisible = true, string title = null, string deepLinkUrl = null, bool isSelected = false)
+        {
+            if (nodes != null && isVisible)
             {
-                Label = "What's going on",
-                FontIcon = "\ue12a",
-                NavigationInfo = NavigationInfo.FromPage("WhatsGoingOnListPage")
-            });
-            Nodes.Add(new ItemNavigationNode
-            {
-                Label = "Recent news",
-                FontIcon = "\ue1d7",
-                NavigationInfo = NavigationInfo.FromPage("RecentNewsListPage")
-            });
-            Nodes.Add(new ItemNavigationNode
-            {
-                Label = "Apps",
-                FontIcon = "\ue15a",
-                NavigationInfo = NavigationInfo.FromPage("AppsListPage")
-            });
-            Nodes.Add(new ItemNavigationNode
-            {
-                Label = "Insider program",
-                FontIcon = "\ue178",
-                NavigationInfo = NavigationInfo.FromPage("InsiderProgramListPage")
-            });
-            Nodes.Add(new ItemNavigationNode
-            {
-                Label = "What are people talking about",
-                FontIcon = "\ue134",
-                NavigationInfo = NavigationInfo.FromPage("WhatArePeopleTalkingAboutListPage")
-            });
-            Nodes.Add(new ItemNavigationNode
-            {
-                Label = "Do more",
-                FontIcon = "\ue12d",
-                NavigationInfo = NavigationInfo.FromPage("DoMoreListPage")
-            });
-            Nodes.Add(new ItemNavigationNode
-            {
-                Label = resourceLoader.GetString("NavigationPanePrivacy"),
-                FontIcon = "\ue1f7",
-                NavigationInfo = new NavigationInfo()
+                var node = new ItemNavigationNode
                 {
-                    NavigationType = NavigationType.DeepLink,
-                    TargetUri = new Uri("http://appstudio.windows.com/home/appprivacyterms", UriKind.Absolute)
+                    Title = title,
+                    Label = label,
+                    FontIcon = fontIcon,
+                    Image = image,
+                    IsSelected = isSelected,
+                    IsVisible = isVisible,
+                    NavigationInfo = NavigationInfo.FromPage(pageName)
+                };
+                if (!string.IsNullOrEmpty(deepLinkUrl))
+                {
+                    node.NavigationInfo = new NavigationInfo()
+                    {
+                        NavigationType = NavigationType.DeepLink,
+                        TargetUri = new Uri(deepLinkUrl, UriKind.Absolute)
+                    };
                 }
-            });
+                nodes.Add(node);
+            }            
         }
 
         public NavigationNode FindPage(Type pageType)

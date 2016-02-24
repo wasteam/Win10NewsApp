@@ -7,29 +7,31 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:was_controls="using:AppStudio.Uwp.Controls"
+	xmlns:vm="using:Windows10News.ViewModels"
     DataContext="{Binding RelativeSource={RelativeSource Self}}"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    <UserControl.Resources>
+    <Grid>
         <was_controls:VisualBreakpoints x:Name="vbp" ConfigFile="/Layouts/List/Breakpoints.Medium.Photo.json"></was_controls:VisualBreakpoints>
-    </UserControl.Resources>
-    <Grid x:Name="main">
         <was_controls:ResponsiveGridView
             x:Name="responsiveGridView"
             ItemsSource="{Binding ItemsSource, ElementName=root}"
-            Margin="0,7,2,0"
             ItemClickCommand="{Binding ItemClickCommand, ElementName=root}"
-            DesiredWidth="{Binding Active.itemsDesiredWidth, Source={StaticResource vbp}}"
-            ItemHeight="{Binding Active.itemsHeight, Source={StaticResource vbp}}"
+            DesiredWidth="{Binding Active.itemsDesiredWidth, ElementName=vbp}"
+            ItemHeight="{Binding Active.itemsHeight, ElementName=vbp}"
             OneRowModeEnabled="{Binding OneRowModeEnabled, ElementName=root}">
             <was_controls:ResponsiveGridView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="vm:ItemViewModel">
                     <Grid
                         Style="{StaticResource BoxGrid}"
-                        Margin="{Binding Active.itemMargin, Source={StaticResource vbp}}"
-                        Height="{Binding Active.itemsHeight, Source={StaticResource vbp}}">
-                        <Image Source="{Binding Image}" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        Margin="{Binding Active.itemMargin, ElementName=vbp}"
+                        Height="{Binding Active.itemsHeight, ElementName=vbp}">
+                        <Image Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image.Source>
+                                <BitmapImage UriSource="{x:Bind ImageUrl, Mode=OneWay}" DecodePixelHeight="{Binding Active.itemsHeight, ElementName=vbp}" />
+                            </Image.Source>
+                        </Image>
                     </Grid>
                 </DataTemplate>
             </was_controls:ResponsiveGridView.ItemTemplate>

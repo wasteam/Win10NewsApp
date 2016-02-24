@@ -3,22 +3,34 @@
     {
       "maxwidth": "500",
       "properties": {
-        "heroImageSource": "/Assets/DataImages/LowHeroImage.jpg",
-		"heroImageStretch": "Uniform"
+        "heroImageSource": "",
+		"heroImageStretch": "Uniform",
+        "pageTitleMargin": "21, 0, 12, 0",
+        "appBarRow": "3",
+        "appBarColumn": "0",
+        "appBarColumnSpan": "2"
       }
     },
     {
       "maxwidth": "800",
       "properties": {
-        "heroImageSource": "/Assets/DataImages/HighHeroImage-2.jpg",
-		"heroImageStretch": "UniformToFill"
+        "heroImageSource": "",
+		"heroImageStretch": "UniformToFill",
+        "pageTitleMargin": "21, 0, 12, 0",
+        "appBarRow": "3",
+        "appBarColumn": "0",
+        "appBarColumnSpan": "2"
       }
     },
     {
       "maxwidth": "*",
       "properties": {
-        "heroImageSource": "/Assets/DataImages/HighHeroImage-2.jpg",
-		"heroImageStretch": "Uniform"
+        "heroImageSource": "",
+		"heroImageStretch": "Uniform",
+        "pageTitleMargin": "21, 0, 12, 0",
+        "appBarRow": "0",
+        "appBarColumn": "1",
+        "appBarColumnSpan": "1"
       }
     }
   ]

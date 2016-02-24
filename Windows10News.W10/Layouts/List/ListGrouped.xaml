@@ -1,0 +1,165 @@
+<local:ListLayoutBase
+    x:Class="Windows10News.Layouts.List.ListGrouped"
+    x:Name="root"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Windows10News.Layouts.List"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:was_controls="using:AppStudio.Uwp.Controls"
+	xmlns:was_commands="using:AppStudio.Uwp.Commands"
+	xmlns:vm="using:Windows10News.ViewModels"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <Grid>
+        <was_controls:VisualBreakpoints x:Name="vbp" ConfigFile="/Layouts/List/Breakpoints.ListGrouped.json"/>
+        <was_controls:Pivorama x:Name="pivorama"
+            ItemsSource="{Binding ItemsSource, ElementName=root}"
+            ItemWidth="{Binding Active.itemWidth, ElementName=vbp}"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            FitToScreen="{Binding Active.pivoramaFitToScreen, ElementName=vbp}">
+            <was_controls:Pivorama.TabTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Header}" TextTrimming="CharacterEllipsis" Style="{StaticResource PageTitleStyle}" FontSize="{StaticResource TitleTextSizeDefault}" Opacity="0.6" Margin="0,6,24,6" HorizontalAlignment="Left"/>
+                </DataTemplate>
+            </was_controls:Pivorama.TabTemplate>
+            <was_controls:Pivorama.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Header}" TextTrimming="CharacterEllipsis" Style="{StaticResource PageTitleStyle}" FontSize="{StaticResource TitleTextSizeDefault}" Opacity="1.0" Margin="0,6,24,6" HorizontalAlignment="Left"/>
+                </DataTemplate>
+            </was_controls:Pivorama.HeaderTemplate>
+            <was_controls:Pivorama.ContentTemplate>
+                <DataTemplate>
+                    <was_controls:ResponsiveGridView
+                        x:Name="responsiveGridView"
+                        ItemClickCommand="{Binding ItemClickCommand, ElementName=root}"
+                        ItemsSource="{Binding Items}"
+                        DesiredWidth="{Binding Active.itemWidth, ElementName=vbp}"
+                        ItemHeight="{Binding Active.itemsHeight, ElementName=vbp}"
+                        ScrollViewer.VerticalScrollMode="Disabled"
+                        ScrollViewer.HorizontalScrollMode="Disabled"
+                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                        <was_controls:ResponsiveGridView.ItemTemplate>
+                            <DataTemplate x:DataType="vm:ItemViewModel">
+                                <Grid
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                    Height="{Binding Active.itemsHeight, ElementName=vbp}">
+                                    <Grid
+                                        Margin="{Binding Active.itemMargin, ElementName=vbp}"
+                                        Background="{StaticResource BoxBackground}"
+                                        Visibility="{Binding Active.mobileLayoutVisibility, ElementName=vbp}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <was_controls:SplitterCard                                                
+                                                Text="{x:Bind Aside, Mode=OneWay}"
+                                                TextFontSize="{Binding Active.splitterCardFontSize, ElementName=vbp}"
+                                                LineSpacing="{Binding Active.asideLineSpacing, ElementName=vbp}"
+                                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                                Margin="0" Padding="0"
+                                                Height="{Binding Active.asideSize, ElementName=vbp}"
+                                                Width="{Binding Active.asideSize, ElementName=vbp}"
+                                                Background="Transparent"
+                                                Foreground="{StaticResource BoxForeground}"/>
+                                            <Grid Grid.Column="1" Margin="{Binding Active.itemPadding, ElementName=vbp}">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock
+                                                    Style="{StaticResource BoxTitleStyle}"
+                                                    Text="{x:Bind Title, Mode=OneWay}"
+                                                    FontSize="{Binding Active.titleFontSize, ElementName=vbp}"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Top"
+                                                    MaxLines="{Binding Active.titleMaxLines, ElementName=vbp}"/>
+                                                <TextBlock
+                                                    Grid.Row="1"
+                                                    Text="{x:Bind SubTitle, Mode=OneWay}"
+                                                    Style="{StaticResource BoxSubtitleStyle}"
+                                                    FontSize="{Binding Active.subTitleFontSize, ElementName=vbp}"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Top"
+                                                    MaxLines="{Binding Active.subTitleMaxLines, ElementName=vbp}"/>
+                                                <TextBlock
+                                                    Grid.Row="2"                                                    
+                                                    Text="{x:Bind Footer, Mode=OneWay}"
+                                                    Style="{StaticResource BoxSubtitleStyle}"
+                                                    FontSize="{Binding Active.footerFontSize, ElementName=vbp}"
+                                                    MaxLines="{Binding Active.footerMaxLines, ElementName=vbp}"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Bottom"/>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid
+                                        Margin="{Binding Active.itemMargin, ElementName=vbp}"
+                                        Background="{StaticResource BoxBackground}"
+                                        Visibility="{Binding Active.desktopLayoutVisibility, ElementName=vbp}">
+                                        <Grid Margin="{Binding Active.itemPadding, ElementName=vbp}">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock
+                                                Grid.Row="0"
+                                                Style="{StaticResource BoxTitleStyle}"
+                                                Text="{x:Bind Title, Mode=OneWay}"
+                                                FontSize="{Binding Active.titleFontSize, ElementName=vbp}"
+                                                FontWeight="Bold"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
+                                                MaxLines="{Binding Active.titleMaxLines, ElementName=vbp}"/>
+                                            <TextBlock
+                                                Grid.Row="1"
+                                                Margin="0,8,0,0"
+                                                Text="{x:Bind SubTitle, Mode=OneWay}"
+                                                Style="{StaticResource BoxSubtitleStyle}"
+                                                FontSize="{Binding Active.subTitleFontSize, ElementName=vbp}"                                            
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
+                                                MaxLines="{Binding Active.subTitleMaxLines, ElementName=vbp}"/>
+                                            <Grid Grid.Row="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock
+                                                    Text="{x:Bind Footer, Mode=OneWay}"
+                                                    Margin="0,20,20,6"
+                                                    Style="{StaticResource BoxSubtitleStyle}"
+                                                    FontSize="{Binding Active.footerFontSize, ElementName=vbp}"
+                                                    MaxLines="{Binding Active.footerMaxLines, ElementName=vbp}"
+                                                    TextAlignment="Left"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Bottom"/>
+                                                <was_controls:SplitterCard
+                                                    VerticalAlignment="Bottom" HorizontalAlignment="Right"                                                    
+                                                    VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right"
+                                                    Padding="0" Grid.Column="1"
+                                                    Text="{x:Bind Aside, Mode=OneWay}"
+                                                    TextFontSize="{Binding Active.splitterCardFontSize, ElementName=vbp}"
+                                                    LineSpacing="{Binding Active.asideLineSpacing, ElementName=vbp}"
+                                                    Height="{Binding Active.asideSize, ElementName=vbp}"
+                                                    Width="{Binding Active.asideSize, ElementName=vbp}"
+                                                    Background="Transparent" Foreground="{StaticResource BoxForeground}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </was_controls:ResponsiveGridView.ItemTemplate>
+                    </was_controls:ResponsiveGridView>
+                </DataTemplate>
+            </was_controls:Pivorama.ContentTemplate>
+        </was_controls:Pivorama>
+    </Grid>
+</local:ListLayoutBase>

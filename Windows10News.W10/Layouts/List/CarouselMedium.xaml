@@ -1,0 +1,42 @@
+<local:ListLayoutBase
+    x:Class="Windows10News.Layouts.List.CarouselMedium"
+    x:Name="root"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Windows10News.Layouts.List"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:was_controls="using:AppStudio.Uwp.Controls"
+	xmlns:vm="using:Windows10News.ViewModels"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <Grid>
+        <was_controls:Carousel
+            ItemsSource="{Binding ItemsSource, ElementName=root}"
+            MaxItems="6" AspectRatio="1" AlignmentX="Left"
+            MinHeight="300"
+            MaxHeight="550"
+            ItemClickCommand="{Binding ItemClickCommand, ElementName=root}">
+            <was_controls:Carousel.ContentTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          Margin="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid
+                            VerticalAlignment="Top"
+                            MaxHeight="{Binding ImageUrl, Converter={StaticResource StringToSizeConverter}}">
+                            <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
+                        <TextBlock Grid.Row="1" Text="{Binding Title}" Style="{StaticResource TitleStyle}" Margin="0,6,0,0"/>
+                    </Grid>
+                </DataTemplate>
+            </was_controls:Carousel.ContentTemplate>
+        </was_controls:Carousel>
+    </Grid>
+</local:ListLayoutBase>

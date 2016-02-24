@@ -1,11 +1,15 @@
 using System;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Diagnostics;
 using System.Windows.Input;
 using AppStudio.DataProviders;
 using AppStudio.Uwp.Actions;
 using AppStudio.Uwp.Cache;
 using AppStudio.Uwp.Commands;
+using AppStudio.Uwp.DataSync;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Devices.Input;
 using Windows.Graphics.Display;
@@ -13,14 +17,17 @@ using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using AppStudio.Uwp.Navigation;
 using Windows10News.Config;
 using Windows10News.Services;
+using Windows.ApplicationModel.Resources;
+using AppStudio.Uwp;
 
 namespace Windows10News.ViewModels
 {
-    public class DetailViewModel<TConfig, TSchema> : DataViewModelBase<TConfig, TSchema> where TSchema : SchemaBase
+    public class DetailViewModel : PageViewModelBase
     {
-        private SectionConfigBase<TConfig, TSchema> _sectionConfig;
+		private static ResourceLoader _resourceLoader;        
         private ComposedItemViewModel _selectedItem;
         private bool _isFullScreen;
         private bool _showInfo;
@@ -31,15 +38,19 @@ namespace Windows10News.ViewModels
         private DispatcherTimer _slideShowTimer;
         private DispatcherTimer _mouseMovedTimer;
         private MouseCapabilities _mouseCapabilities;
+        private ObservableCollection<ItemViewModel> _relatedItems = new ObservableCollection<ItemViewModel>();
+		private string _relatedContentTitle;
+        private string _relatedContentStatus;
 
-        public DetailViewModel(SectionConfigBase<TConfig, TSchema> sectionConfig)
-            : base(sectionConfig)
+        private Func<ItemViewModel, Task> LoadDataInternal;
+
+        private DetailViewModel()
         {
             Items = new ObservableCollection<ComposedItemViewModel>();
-            _sectionConfig = sectionConfig;
             ShowInfo = true;
             IsRestoreScreenButtonVisible = false;
-            Title = _sectionConfig.DetailPage.Title;
+
+            ZoomMode = ZoomMode.Enabled;
             if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
                 FullScreenService.FullScreenModeChanged += FullScreenModeChanged;
@@ -51,6 +62,111 @@ namespace Windows10News.ViewModels
             }
         }
 
+		private static ResourceLoader ResourceLoader
+        {
+            get
+            {
+                if (_resourceLoader == null)
+                {
+                    _resourceLoader = new ResourceLoader();
+                }
+                return _resourceLoader;
+            }
+        }
+
+        public static DetailViewModel CreateNew<TSchema, TRelatedSchema>(SectionConfigBase<TSchema, TRelatedSchema> sectionConfig) where TSchema : SchemaBase where TRelatedSchema : SchemaBase
+        {
+            var vm = new DetailViewModel
+            {
+                Title = sectionConfig.DetailPage.Title,
+                SectionName = sectionConfig.Name
+            };
+            vm.RelatedContentTitle = sectionConfig.RelatedContent?.ListPage?.Title;
+
+            var settings = new CacheSettings
+            {
+                Key = sectionConfig.Name,
+                Expiration = vm.CacheExpiration,
+                NeedsNetwork = sectionConfig.NeedsNetwork,
+                UseStorage = sectionConfig.NeedsNetwork,
+            };
+            //we save a reference to the load delegate in order to avoid export TSchema outside the view model
+            vm.LoadDataInternal = async (selectedItem) =>
+            {
+                TSchema sourceSelected = null;
+
+                await AppCache.LoadItemsAsync<TSchema>(settings, sectionConfig.LoadDataAsyncFunc, (content) => vm.ParseDetailItems(sectionConfig.DetailPage, content, selectedItem, out sourceSelected));
+                if (sectionConfig.RelatedContent != null)
+                {
+                    var settingsRelated = new CacheSettings
+                    {
+                        Key = $"{sectionConfig.Name}_related_{selectedItem.Id}",
+                        Expiration = vm.CacheExpiration,
+                        NeedsNetwork = sectionConfig.RelatedContent.NeedsNetwork
+                    };
+
+					vm.RelatedContentStatus = ResourceLoader.GetString("LoadingRelatedContent");
+                    await AppCache.LoadItemsAsync<TRelatedSchema>(settingsRelated, () => sectionConfig.RelatedContent.LoadDataAsync(sourceSelected), (content) => vm.ParseRelatedItems(sectionConfig.RelatedContent.ListPage, content));
+					if (vm.RelatedItems == null || vm.RelatedItems.Count == 0)
+                    {
+                        vm.RelatedContentStatus = ResourceLoader.GetString("ThereIsNotRelatedContent");                        
+                    }
+                    else
+                    {
+                        vm.RelatedContentStatus = string.Empty;
+                    }
+                }
+            };
+
+            return vm;
+        }
+
+        public static DetailViewModel CreateNew<TSchema>(SectionConfigBase<TSchema> sectionConfig) where TSchema : SchemaBase
+        {
+            var vm = new DetailViewModel
+            {
+                Title = sectionConfig.DetailPage.Title,
+                SectionName = sectionConfig.Name
+            };
+
+            var settings = new CacheSettings
+            {
+                Key = sectionConfig.Name,
+                Expiration = vm.CacheExpiration,
+                NeedsNetwork = sectionConfig.NeedsNetwork,
+                UseStorage = sectionConfig.NeedsNetwork,
+            };
+            //we save a reference to the load delegate in order to avoid export TSchema outside the view model
+            vm.LoadDataInternal = async (selectedItem) =>
+            {
+                await AppCache.LoadItemsAsync<TSchema>(settings, sectionConfig.LoadDataAsyncFunc, (content) => vm.ParseDetailItems(sectionConfig.DetailPage, content, selectedItem));
+            };
+
+            return vm;
+        }
+
+        public async Task LoadDataAsync(ItemViewModel selectedItem)
+        {
+            try
+            {
+                HasLoadDataErrors = false;
+                IsBusy = true;
+
+                await LoadDataInternal(selectedItem);
+            }
+            catch (Exception ex)
+            {
+                Microsoft.ApplicationInsights.TelemetryClient telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
+                telemetry.TrackException(ex);
+                HasLoadDataErrors = true;
+                Debug.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
         public ComposedItemViewModel SelectedItem
         {
             get { return _selectedItem; }
@@ -59,8 +175,46 @@ namespace Windows10News.ViewModels
                 SetProperty(ref _selectedItem, value);
             }
         }
-        public ZoomMode ZoomMode { get; set; }
+        private ZoomMode _zoomMode;
+        public ZoomMode ZoomMode
+        {
+            get { return _zoomMode; }
+            set { SetProperty(ref _zoomMode, value); }
+        }
         public ObservableCollection<ComposedItemViewModel> Items { get; protected set; }
+
+
+        public ObservableCollection<ItemViewModel> RelatedItems
+        {
+            get { return _relatedItems; }
+            private set { SetProperty(ref _relatedItems, value); }
+        }
+		
+        public string RelatedContentTitle
+        {
+            get { return _relatedContentTitle; }
+            set { SetProperty(ref _relatedContentTitle, value); }
+        }
+
+		
+        public string RelatedContentStatus
+        {
+            get { return _relatedContentStatus; }
+            set { SetProperty(ref _relatedContentStatus, value); }
+        }
+
+		public RelayCommand<ItemViewModel> RelatedItemClickCommand
+        {
+            get
+            {
+                return new RelayCommand<ItemViewModel>(
+                (item) =>
+                {
+                    NavigationService.NavigateTo(item);
+                });
+            }
+        }
+
         public bool IsFullScreen
         {
             get { return _isFullScreen; }
@@ -86,6 +240,7 @@ namespace Windows10News.ViewModels
             get { return _isRestoreScreenButtonVisible; }
             set { SetProperty(ref _isRestoreScreenButtonVisible, value); }
         }
+
         public DispatcherTimer SlideShowTimer
         {
             get
@@ -117,16 +272,7 @@ namespace Windows10News.ViewModels
                 return _mouseMovedTimer;
             }
         }
-        public override void UpdateCommonProperties(SplitViewDisplayMode splitViewDisplayMode)
-        {
-            base.UpdateCommonProperties(splitViewDisplayMode);
-            if (splitViewDisplayMode == SplitViewDisplayMode.Overlay)
-            {
-                AppBarRow = 2;
-                AppBarColumn = 0;
-                AppBarColumnSpan = 2;
-            }
-        }
+
         private bool HasMouseConnected
         {
             get
@@ -198,8 +344,16 @@ namespace Windows10News.ViewModels
         {
             ShareContent(dataRequest, SelectedItem, supportsHtml);
         }
-        protected override void ParseItems(CachedContent<TSchema> content, ItemViewModel selectedItem)
+
+        private void ParseDetailItems<TSchema>(DetailPageConfig<TSchema> detailConfig, CachedContent<TSchema> content, ItemViewModel selectedItem) where TSchema : SchemaBase
         {
+            TSchema sourceSelected;
+            ParseDetailItems(detailConfig, content, selectedItem, out sourceSelected);
+        }
+
+        private void ParseDetailItems<TSchema>(DetailPageConfig<TSchema> detailConfig, CachedContent<TSchema> content, ItemViewModel selectedItem, out TSchema sourceSelected) where TSchema : SchemaBase
+        {
+            sourceSelected = content.Items.FirstOrDefault(i => i._id == selectedItem.Id);
 
             foreach (var item in content.Items)
             {
@@ -208,7 +362,7 @@ namespace Windows10News.ViewModels
                     Id = item._id
                 };
 
-                foreach (var binding in _sectionConfig.DetailPage.LayoutBindings)
+                foreach (var binding in detailConfig.LayoutBindings)
                 {
                     var parsedItem = new ItemViewModel
                     {
@@ -219,16 +373,16 @@ namespace Windows10News.ViewModels
                     composedItem.Add(parsedItem);
                 }
 
-                composedItem.Actions = _sectionConfig.DetailPage.Actions
-                                                                    .Select(a => new ActionInfo
-                                                                    {
-                                                                        Command = a.Command,
-                                                                        CommandParameter = a.CommandParameter(item),
-                                                                        Style = a.Style,
-                                                                        Text = a.Text,
-                                                                        ActionType = ActionType.Primary
-                                                                    })
-                                                                    .ToList();
+                composedItem.Actions = detailConfig.Actions
+                                                        .Select(a => new ActionInfo
+                                                        {
+                                                            Command = a.Command,
+                                                            CommandParameter = a.CommandParameter(item),
+                                                            Style = a.Style,
+                                                            Text = a.Text,
+                                                            ActionType = ActionType.Primary
+                                                        })
+                                                        .ToList();
 
                 Items.Add(composedItem);
             }
@@ -238,6 +392,25 @@ namespace Windows10News.ViewModels
             }
 
         }
+
+        private void ParseRelatedItems<TSchema>(ListPageConfig<TSchema> listConfig, CachedContent<TSchema> content) where TSchema : SchemaBase
+        {
+            var parsedItems = new List<ItemViewModel>();
+
+            foreach (var item in content.Items)
+            {
+                var parsedItem = new ItemViewModel
+                {
+                    Id = item._id,
+                    NavigationInfo = listConfig.DetailNavigation(item)
+                };
+                listConfig.LayoutBindings(parsedItem, item);
+                parsedItems.Add(parsedItem);
+            }
+
+            RelatedItems.Sync(parsedItems);
+        }
+
         private void FullScreenPlayActionsChanged(object sender, EventArgs e)
         {
             if (SupportSlideShow)
@@ -249,6 +422,7 @@ namespace Windows10News.ViewModels
         {
             if (SupportFullScreen)
             {
+                //this.ShowInfo = !isFullScreen;
                 this.IsFullScreen = isFullScreen;
                 if (isFullScreen)
                 {

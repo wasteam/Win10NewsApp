@@ -1,55 +1,90 @@
-﻿{
-  "_import": "/Layouts/List/Breakpoints.Medium.json",
-  //This Menu overrides itemsDesiredWidth property from Breakpoints.Medium.json
-  "breakpoints": [
+﻿{  
+  "breakpoints": [{
+      "maxwidth": "318",
+      "properties": {
+        "itemsDesiredWidth": "69",
+        "itemsHeight": "200",
+        "imageHeight": "100",
+        "menuMargin": "0,4,0,0",        
+        "itemMargin": "2",
+        "titleFontSize": "15"
+      }
+    },
     {
-      "maxwidth": "500",
+      "maxwidth": "470",
       "properties": {
         "itemsDesiredWidth": "69",
         "itemsHeight": "240",
         "imageHeight": "120",
-        "menuMargin": "0,6,0,0",
-        "titleMaxLines": "2"
+        "menuMargin": "0,6,0,0",        
+        "itemMargin": "4",
+        "titleFontSize": "17"
       }
     },
     {
-      "maxwidth": "1128",
+      "maxwidth": "570",
       "properties": {
         "itemsDesiredWidth": "114",
         "itemsHeight": "280",
         "imageHeight": "160",
-        "menuMargin": "0,8,0,0",
-        "titleMaxLines": "2"
+        "menuMargin": "0,8,0,0",    
+        "itemMargin": "4",
+        "titleFontSize": "17"
       }
     },
     {
-      "maxwidth": "1386",
+      "maxwidth": "1278",
       "properties": {
-        "itemsDesiredWidth": "127",
-        "itemsHeight": "350",
-        "imageHeight": "210",
-        "menuMargin": "0,10,0,0",
-        "titleMaxLines": "2"
+        "itemsDesiredWidth": "142",
+        "itemsHeight": "280",
+        "imageHeight": "160",
+        "menuMargin": "0,8,0,0",
+        "itemMargin": "4",
+        "titleFontSize": "17"
       }
     },
     {
-      "maxwidth": "1710",
+      "maxwidth": "1430",
       "properties": {
         "itemsDesiredWidth": "159",
-        "itemsHeight": "400",
-        "imageHeight": "240",
-        "menuMargin": "0,12,0,0",
-        "titleMaxLines": "3"
+        "itemsHeight": "280",
+        "imageHeight": "160",
+        "menuMargin": "0,8,0,0",
+        "itemMargin": "4",
+        "titleFontSize": "17"
+      }
+    },
+    {
+      "maxwidth": "1600",
+      "properties": {
+        "itemsDesiredWidth": "178",
+        "itemsHeight": "280",
+        "imageHeight": "160",
+        "menuMargin": "0,8,0,0",
+        "itemMargin": "4",
+        "titleFontSize": "17"
+      }
+    },
+    {
+      "maxwidth": "1800",
+      "properties": {
+        "itemsDesiredWidth": "200",
+        "itemsHeight": "280",
+        "imageHeight": "160",
+        "menuMargin": "0,8,0,0",
+        "itemMargin": "4",
+        "titleFontSize": "17"
       }
     },
     {
       "maxwidth": "*",
       "properties": {
-        "itemsDesiredWidth": "198",
-        "itemsHeight": "500",
-        "imageHeight": "300",
-        "menuMargin": "0,14,0,0",
-        "titleMaxLines": "4"
+        "itemsDesiredWidth": "224",
+        "itemsHeight": "280",
+        "imageHeight": "160",
+        "menuMargin": "0,8,0,0",
+        "itemMargin": "4",
+        "titleFontSize": "17"
       }
     }
   ] 

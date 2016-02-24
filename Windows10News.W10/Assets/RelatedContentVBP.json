@@ -1,0 +1,18 @@
+{
+  "breakpoints": [
+    {
+      "maxwidth": "1400",
+      "properties": {
+        "footerVisibility": "Visible",
+        "aSideRightVisibility": "Collapsed"
+      }
+    },
+    {
+      "maxwidth": "*",
+      "properties": {
+        "footerVisibility": "Collapsed",
+        "aSideRightVisibility": "Visible"
+      }
+    }
+  ]
+}

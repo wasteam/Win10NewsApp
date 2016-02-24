@@ -1,4 +1,8 @@
+
+
+
 using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using AppStudio.DataProviders;
 using AppStudio.DataProviders.Core;
@@ -6,37 +10,25 @@ using AppStudio.DataProviders.Rss;
 using AppStudio.Uwp.Actions;
 using AppStudio.Uwp.Commands;
 using AppStudio.Uwp.Navigation;
+using AppStudio.Uwp;
+using System.Linq;
 using Windows10News.Config;
 using Windows10News.ViewModels;
 
 namespace Windows10News.Sections
 {
-    public class InsiderProgramConfig : SectionConfigBase<RssDataConfig, RssSchema>
+    public class InsiderProgramConfig : SectionConfigBase<RssSchema>
     {
-        public override DataProviderBase<RssDataConfig, RssSchema> DataProvider
+		public override Func<Task<IEnumerable<RssSchema>>> LoadDataAsyncFunc
         {
             get
             {
-                return new RssDataProvider();
-            }
-        }
-
-        public override RssDataConfig Config
-        {
-            get
-            {
-                return new RssDataConfig
+                var config = new RssDataConfig
                 {
                     Url = new Uri("http://blogs.windows.com/blog/tag/windows-insider-program/feed/")
                 };
-            }
-        }
 
-        public override NavigationInfo ListNavigationInfo
-        {
-            get 
-            {
-                return NavigationInfo.FromPage("InsiderProgramListPage");
+                return () => Singleton<RssDataProvider>.Instance.LoadDataAsync(config, MaxRecords);
             }
         }
 
@@ -48,14 +40,17 @@ namespace Windows10News.Sections
                 {
                     Title = "Insider program",
 
+					PageTitle = "Insider program",
+
+                    ListNavigationInfo = NavigationInfo.FromPage("InsiderProgramListPage"),
+
                     LayoutBindings = (viewModel, item) =>
                     {
                         viewModel.Title = item.Title.ToSafeString();
                         viewModel.SubTitle = item.Summary.ToSafeString();
-                        viewModel.Description = null;
-                        viewModel.Image = item.ImageUrl.ToSafeString();
+                        viewModel.ImageUrl = ItemViewModel.LoadSafeUrl(item.ImageUrl.ToSafeString());
                     },
-                    NavigationInfo = (item) =>
+                    DetailNavigation = (item) =>
                     {
                         return NavigationInfo.FromPage("InsiderProgramDetailPage", true);
                     }
@@ -73,8 +68,9 @@ namespace Windows10News.Sections
                     viewModel.PageTitle = item.Author.ToSafeString();
                     viewModel.Title = item.Title.ToSafeString();
                     viewModel.Description = item.Content.ToSafeString();
-                    viewModel.Image = "";
+                    viewModel.ImageUrl = ItemViewModel.LoadSafeUrl("");
                     viewModel.Content = null;
+					viewModel.Source = item.FeedUrl;
                 });
 
                 var actions = new List<ActionConfig<RssSchema>>
@@ -89,11 +85,6 @@ namespace Windows10News.Sections
                     Actions = actions
                 };
             }
-        }
-
-        public override string PageTitle
-        {
-            get { return "Insider program"; }
         }
     }
 }

@@ -1,0 +1,89 @@
+﻿{
+  "breakpoints": [
+    {
+      "maxwidth": "318",
+      "properties": {
+        "asideLineSpacing": "-10",
+        "asideSize": "80",
+        "boxMargin": "6,6,6,6",
+        "footerFontSize": "15",
+        "footerMaxLines": "1",
+        "itemMargin": "2",
+        "itemsDesiredWidth": "318",
+        "itemsHeight": "100",
+        "splitterCardFontSize": "20",
+        "subTitleFontSize": "16",
+        "titleFontSize": "18",
+        "titleMaxLines": "2"
+      }
+    },
+    {
+      "maxwidth": "470",
+      "properties": {
+        "asideLineSpacing": "-13",
+        "asideSize": "100",
+        "boxMargin": "14,11,14,12",
+        "footerFontSize": "15",
+        "footerMaxLines": "1",
+        "itemMargin": "4",
+        "itemsDesiredWidth": "470",
+        "itemsHeight": "140",
+        "splitterCardFontSize": "24",
+        "subTitleFontSize": "18",
+        "titleFontSize": "20",
+        "titleMaxLines": "2"
+      }
+    },
+    {
+      "maxwidth": "1053",
+      "properties": {
+        "asideLineSpacing": "-15",
+        "asideSize": "140",
+        "boxMargin": "22,15,24,19",
+        "footerFontSize": "16",
+        "footerMaxLines": "1",
+        "itemMargin": "7",
+        "itemsDesiredWidth": "351",
+        "itemsHeight": "223",
+        "splitterCardFontSize": "32",
+        "subTitleFontSize": "19",
+        "titleFontSize": "21",
+        "titleMaxLines": "2"
+      }
+    },
+    {
+      "maxwidth": "1578",
+      "properties": {
+        "asideLineSpacing": "-18",
+        "asideSize": "150",
+        "boxMargin": "28,18,74,23",
+        "footerFontSize": "17",
+        "footerMaxLines": "1",
+        "itemMargin": "8",
+        "itemsDesiredWidth": "526",
+        "itemsHeight": "248",
+        "splitterCardFontSize": "36",
+        "subTitleFontSize": "19",
+        "titleFontSize": "24",
+        "titleMaxLines": "2"
+      }
+    },
+    {
+      "maxwidth": "*",
+      "properties": {
+        "asideLineSpacing": "-20",
+        "asideSize": "166",
+        "boxMargin": "30,19,86,25",
+        "splitterCardFontSize": "42",
+        "footerFontSize": "18",
+        "footerMaxLines": "1",
+        "itemMargin": "10",
+        "itemsDesiredWidth": "789",
+        "itemsHeight": "262",
+        "subTitleFontSize": "20",
+        "titleFontSize": "25",
+        "titleMaxLines": "2"
+      }
+    }
+  ]
+}

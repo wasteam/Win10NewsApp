@@ -1,6 +1,9 @@
+using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Diagnostics;
 using System.Windows.Input;
 using AppStudio.Uwp.Actions;
 using AppStudio.Uwp.Cache;
@@ -14,35 +17,129 @@ using Windows10News.Config;
 
 namespace Windows10News.ViewModels
 {
-    public class ListViewModel<TConfig, TSchema> : DataViewModelBase<TConfig, TSchema>, INavigable where TSchema : SchemaBase
+    public class ListViewModel : PageViewModelBase, INavigable
     {
-        private int _visibleItems;
-        private SectionConfigBase<TConfig, TSchema> _sectionConfig;
-        private ObservableCollection<ItemViewModel> _items;
+        private ObservableCollection<ItemViewModel> _items = new ObservableCollection<ItemViewModel>();
         private bool _hasMoreItems;
+		private bool _hasItems;
+        private int _visibleItems;
 
-        public ListViewModel(SectionConfigBase<TConfig, TSchema> sectionConfig, int visibleItems = 0)
-            : base(sectionConfig)
+        private Func<bool, Func<ItemViewModel, bool>, Task<DateTime?>> LoadDataInternal;
+
+        private ListViewModel()
         {
-            _visibleItems = visibleItems;
-            _items = new ObservableCollection<ItemViewModel>();
+        }
 
-            _sectionConfig = sectionConfig;
-
-            Title = sectionConfig.ListPage.Title;
-            NavigationInfo = _sectionConfig.ListNavigationInfo;
-            PageTitle = _sectionConfig.PageTitle;
-
-            if (!DataProvider.IsLocal)
+        public static ListViewModel CreateNew<TSchema>(SectionConfigBase<TSchema> sectionConfig, int visibleItems = 0) where TSchema : SchemaBase
+        {
+            var vm = new ListViewModel
             {
-                Actions.Add(new ActionInfo
+				SectionName = sectionConfig.Name,
+                Title = sectionConfig.ListPage.Title,
+                NavigationInfo = sectionConfig.ListPage.ListNavigationInfo,
+                PageTitle = sectionConfig.ListPage.PageTitle,
+                _visibleItems = visibleItems,
+                HasLocalData = !sectionConfig.NeedsNetwork
+            };
+
+            var settings = new CacheSettings
+            {
+                Key = sectionConfig.Name,
+                Expiration = vm.CacheExpiration,
+                NeedsNetwork = sectionConfig.NeedsNetwork,
+                UseStorage = sectionConfig.NeedsNetwork,
+            };
+            //we save a reference to the load delegate in order to avoid export TSchema outside the view model
+            vm.LoadDataInternal = (refresh, filterFunc) => AppCache.LoadItemsAsync<TSchema>(settings, sectionConfig.LoadDataAsyncFunc, (content) => vm.ParseItems(sectionConfig.ListPage, content, filterFunc), refresh);
+
+            if (sectionConfig.NeedsNetwork)
+            {
+                vm.Actions.Add(new ActionInfo
                 {
-                    Command = Refresh,
+                    Command = vm.Refresh,
                     Style = ActionKnownStyles.Refresh,
                     Name = "RefreshButton",
                     ActionType = ActionType.Primary
                 });
             }
+
+            return vm;
+        }
+
+        public async Task LoadDataAsync(bool forceRefresh = false)
+        {
+            try
+            {
+                HasLoadDataErrors = false;
+                IsBusy = true;
+
+                LastUpdated = await LoadDataInternal(forceRefresh, null);
+            }
+            catch (Exception ex)
+            {
+                Microsoft.ApplicationInsights.TelemetryClient telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
+                telemetry.TrackException(ex);
+                HasLoadDataErrors = true;
+                Debug.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+		public async Task SearchDataAsync(string searchTerm)
+        {
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                try
+                {
+                    HasLoadDataErrors = false;
+                    IsBusy = true;
+                    LastUpdated = await LoadDataInternal(true, i => i.ContainsString(searchTerm));
+                }
+                catch (Exception ex)
+                {
+					Microsoft.ApplicationInsights.TelemetryClient telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
+					telemetry.TrackException(ex);
+                    HasLoadDataErrors = true;
+                    Debug.WriteLine(ex.ToString());
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
+            }
+        }
+
+		public async Task FilterDataAsync(List<string> itemsId)
+        {
+            if (itemsId != null && itemsId.Any())
+            {
+                try
+                {
+                    HasLoadDataErrors = false;
+                    IsBusy = true;
+                    LastUpdated = await LoadDataInternal(true, i => itemsId.Contains(i.Id));
+                }
+                catch (Exception ex)
+                {
+					Microsoft.ApplicationInsights.TelemetryClient telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
+					telemetry.TrackException(ex);
+                    HasLoadDataErrors = true;
+                    Debug.WriteLine(ex.ToString());
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
+            }
+        }
+
+		internal void CleanItems()
+        {
+            this.Items.Clear();
+            this.HasItems = false;
         }
 
         public RelayCommand<ItemViewModel> ItemClickCommand
@@ -70,7 +167,6 @@ namespace Windows10News.ViewModels
         }
 
         public NavigationInfo NavigationInfo { get; set; }
-
         public string PageTitle { get; set; }
 
         public ObservableCollection<ItemViewModel> Items
@@ -85,6 +181,11 @@ namespace Windows10News.ViewModels
             private set { SetProperty(ref _hasMoreItems, value); }
         }
 
+		public bool HasItems
+        {
+            get { return _hasItems; }
+            private set { SetProperty(ref _hasItems, value); }
+        }
 
         public ICommand Refresh
         {
@@ -105,42 +206,42 @@ namespace Windows10News.ViewModels
             }
         }
 
-        public override void UpdateCommonProperties(SplitViewDisplayMode splitViewDisplayMode)
-        {
-            base.UpdateCommonProperties(splitViewDisplayMode);
-            if (splitViewDisplayMode == SplitViewDisplayMode.Overlay)
-            {
-                AppBarRow = 5;
-                AppBarColumn = 0;
-                AppBarColumnSpan = 2;
-            }
-        }
-
-        protected override void ParseItems(CachedContent<TSchema> content, ItemViewModel selectedItem)
+        private void ParseItems<TSchema>(ListPageConfig<TSchema> listConfig, CachedContent<TSchema> content, Func<ItemViewModel, bool> filterFunc) where TSchema : SchemaBase
         {
             var parsedItems = new List<ItemViewModel>();
-            IEnumerable<TSchema> sourceVisibleItems = null;
-            if (_visibleItems == 0)
-            {
-                sourceVisibleItems = content.Items;
-            }
-            else
-            {
-                sourceVisibleItems = content.Items.Take(_visibleItems);
-            }
-            foreach (var item in sourceVisibleItems)
+            foreach (var item in GetVisibleItems(content, _visibleItems))
             {
                 var parsedItem = new ItemViewModel
                 {
                     Id = item._id,
-                    NavigationInfo = _sectionConfig.ListPage.NavigationInfo(item)
+                    NavigationInfo = listConfig.DetailNavigation(item)
                 };
-                _sectionConfig.ListPage.LayoutBindings(parsedItem, item);
-                parsedItems.Add(parsedItem);
+                listConfig.LayoutBindings(parsedItem, item);
+                if (filterFunc == null)
+                {
+                    parsedItems.Add(parsedItem);
+                }
+                else if (filterFunc(parsedItem))
+                {
+                    parsedItems.Add(parsedItem);
+                }
             }
-
             Items.Sync(parsedItems);
+            HasItems = Items.Count > 0;
             HasMoreItems = content.Items.Count() > Items.Count;
+        }
+
+        private IEnumerable<TSchema> GetVisibleItems<TSchema>(CachedContent<TSchema> content, int visibleItems) where TSchema : SchemaBase
+        {
+            if (visibleItems == 0)
+            {
+                return content.Items;
+            }
+            else
+            {
+                return content.Items
+                                .Take(visibleItems);
+            }
         }
     }
 }

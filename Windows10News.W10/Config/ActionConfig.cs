@@ -3,6 +3,7 @@ using System.Windows.Input;
 using AppStudio.DataProviders;
 using AppStudio.Uwp.Actions;
 using AppStudio.Uwp.Commands;
+using Windows.ApplicationModel.Appointments;
 
 namespace Windows10News.Config
 {
@@ -75,6 +76,17 @@ namespace Windows10News.Config
                 Text = text,
                 Style = ActionKnownStyles.Play,
                 Command = ActionCommands.NavigateToUrl,
+                CommandParameter = param
+            };
+        }
+
+        public static ActionConfig<T> AddToCalendar(string text, Func<T, Appointment> param)
+        {
+            return new ActionConfig<T>
+            {
+                Text = text,
+                Style = ActionKnownStyles.AddToCalendar,
+                Command = ActionCommands.AddToCalendar,
                 CommandParameter = param
             };
         }

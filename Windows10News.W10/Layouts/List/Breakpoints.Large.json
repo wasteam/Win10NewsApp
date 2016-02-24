@@ -1,36 +1,36 @@
 ﻿{
   "breakpoints": [
-    {
-      "maxwidth": "500",
+     {
+      "maxwidth": "318",
       "properties": {
-        "itemsDesiredWidth": "213",
+        "itemsDesiredWidth": "318",
         "itemMargin": "2",
         "titleFontSize": "17",
         "subTitleFontSize": "15"
       }
     },
     {
-      "maxwidth": "1128",
+      "maxwidth": "470",
       "properties": {
-        "itemsDesiredWidth": "349",
+        "itemsDesiredWidth": "470",
+        "itemMargin": "2",
+        "titleFontSize": "17",
+        "subTitleFontSize": "15"
+      }
+    },
+    {
+      "maxwidth": "1053",
+      "properties": {
+        "itemsDesiredWidth": "351",
         "itemMargin": "4",
         "titleFontSize": "17",
         "subTitleFontSize": "15"
       }
     },
     {
-      "maxwidth": "1386",
+      "maxwidth": "1578",
       "properties": {
-        "itemsDesiredWidth": "500",
-        "itemMargin": "6",
-        "titleFontSize": "19",
-        "subTitleFontSize": "17"
-      }
-    },
-    {
-      "maxwidth": "1710",
-      "properties": {
-        "itemsDesiredWidth": "652",
+        "itemsDesiredWidth": "526",
         "itemMargin": "10",
         "titleFontSize": "21",
         "subTitleFontSize": "19"
@@ -39,7 +39,7 @@
     {
       "maxwidth": "*",
       "properties": {
-        "itemsDesiredWidth": "814",
+        "itemsDesiredWidth": "789",
         "itemMargin": "10",
         "titleFontSize": "21",
         "subTitleFontSize": "19"

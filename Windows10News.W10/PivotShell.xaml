@@ -1,0 +1,17 @@
+<Page
+    x:Name="PageLayout"
+    x:Class="Windows10News.PivotShell"
+    DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	KeyUp="PageLayout_KeyUp"
+    mc:Ignorable="d">
+    <Grid Background="{StaticResource AppBackground}">        
+	    <Frame x:Name="MainFrame"/>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource AppBackground}" x:Name="extendedLoadingHome">
+            <ProgressRing x:Name="loadingProgressRing" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="100" Foreground="{StaticResource TitleForeground}" IsActive="True"/>
+        </Grid>
+    </Grid>
+</Page>

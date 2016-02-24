@@ -13,6 +13,7 @@ namespace Windows10News.Navigation
         public string Label { get; set; }
         public string FontIcon { get; set; }
         public string Image { get; set; }
+        public bool IsVisible { get; set; }
         public abstract bool IsContainer { get; }
 
         public bool IsSelected
@@ -60,12 +61,17 @@ namespace Windows10News.Navigation
 
     public class GroupNavigationNode : NavigationNode
     {
-        private Visibility _visibility;
+        private bool _isGroupListOpened;
         private double _backgroundOpacity;
 
-        public GroupNavigationNode()
+        public GroupNavigationNode(string label, string fontIcon, string image, bool isVisible = true, bool isGroupListOpened = true)
         {
             Nodes = new ObservableCollection<NavigationNode>();
+            Label = label;
+            FontIcon = fontIcon;
+            IsVisible = isVisible;
+            IsGroupListOpened = isGroupListOpened;
+            Image = image;
         }
 
         public override bool IsContainer
@@ -77,17 +83,14 @@ namespace Windows10News.Navigation
         }
 
         public ObservableCollection<NavigationNode> Nodes { get; set; }
-
-        public Visibility Visibility
+        
+        public bool IsGroupListOpened
         {
-            get
-            {
-                return _visibility;
-            }
+            get { return _isGroupListOpened; }
             set
             {
-                SetProperty(ref _visibility, value);
-                if (_visibility == Visibility.Visible)
+                SetProperty(ref _isGroupListOpened, value);
+                if (_isGroupListOpened == true)
                 {
                     BackgroundOpacity = 0.2;
                 }
@@ -106,14 +109,7 @@ namespace Windows10News.Navigation
 
         public override void Selected()
         {
-            if (Visibility == Visibility.Collapsed)
-            {
-                Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Visibility = Visibility.Collapsed;
-            }
+            IsGroupListOpened = !IsGroupListOpened;
         }
 
         public override string ToString()

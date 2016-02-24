@@ -1,0 +1,70 @@
+﻿{
+  "breakpoints": [
+    //Mobile
+    {
+      "maxwidth": "600",
+      "properties": {
+        "asideLineSpacing": "-11",
+        "asideSize": "80",
+        "desktopLayoutVisibility": "Collapsed",
+        "footerFontSize": "13",
+        "footerMaxLines": "1",
+        "itemMargin": "2",
+        "itemPadding": "0,10,16,10",
+        "itemsHeight": "100",
+        "itemWidth": "460",
+        "mobileLayoutVisibility": "Visible",
+        "pivoramaFitToScreen": "True",
+        "splitterCardFontSize": "20",
+        "subTitleFontSize": "15",
+        "subTitleMaxLines": "1",
+        "titleFontSize": "20",
+        "titleMaxLines": "1"
+      }
+    },
+    //Mobile PC
+    {
+      "maxwidth": "900",
+      "properties": {
+        "asideLineSpacing": "-13",
+        "asideSize": "100",
+        "desktopLayoutVisibility": "Collapsed",
+        "footerFontSize": "14",
+        "footerMaxLines": "1",
+        "itemMargin": "4",
+        "itemPadding": "0,22,28,22",
+        "itemsHeight": "150",
+        "itemWidth": "460",
+        "mobileLayoutVisibility": "Visible",
+        "pivoramaFitToScreen": "False",
+        "splitterCardFontSize": "30",
+        "subTitleFontSize": "17",
+        "subTitleMaxLines": "2",
+        "titleFontSize": "22",
+        "titleMaxLines": "1"
+      }
+    },
+    //PC
+    {
+      "maxwidth": "*",
+      "properties": {
+        "asideLineSpacing": "-18",
+        "asideSize": "130",
+        "desktopLayoutVisibility": "Visible",
+        "footerFontSize": "15",
+        "footerMaxLines": "2",
+        "itemMargin": "8",
+        "itemPadding": "35,27,35,27",
+        "itemsHeight": "300",
+        "itemWidth": "460",
+        "mobileLayoutVisibility": "Collapsed",
+        "pivoramaFitToScreen": "False",
+        "splitterCardFontSize": "35",
+        "subTitleFontSize": "20",
+        "subTitleMaxLines": "2",
+        "titleFontSize": "28",
+        "titleMaxLines": "1"
+      }
+    }
+  ]
+}

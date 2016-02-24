@@ -5,8 +5,8 @@
     "Microsoft.ApplicationInsights.WindowsApps": "1.1.0",
     "Newtonsoft.Json": "7.0.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "WindowsAppStudio.DataProviders": "1.0.*",
-    "WindowsAppStudio.Uwp": "1.0.*"
+    "WindowsAppStudio.DataProviders": "1.2.*",
+    "WindowsAppStudio.Uwp": "1.2.*"
   },
   "frameworks": {
     "uap10.0": {}

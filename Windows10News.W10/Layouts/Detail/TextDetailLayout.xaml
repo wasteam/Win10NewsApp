@@ -6,22 +6,22 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:was_controls="using:AppStudio.Uwp.Controls"
     xmlns:local="using:Windows10News.Layouts.Detail"
-    DataContext="{Binding RelativeSource={RelativeSource Self}}"    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    x:Name="root"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400">		
         <Grid>
-        <was_controls:ReadingWebView
-            x:Name="readingWebView"
-            DataContext="{Binding ViewModel.SelectedItem, Mode=TwoWay}"
-            Title="{Binding Title}" SubTitle="{Binding SubTitle}" ImageUrl="{Binding Image}" DetailContent="{Binding Description}" FlyoutEnabled="True" Background="Transparent" Foreground="{StaticResource DescriptionForeground}" ReadingWebViewNavigationCompleted="readingWebView_ReadingWebViewNavigationCompleted">
-            <was_controls:ReadingWebView.FlyoutTemplate>
-                <DataTemplate>
-                    <StackPanel HorizontalAlignment="Stretch" Background="{StaticResource AppBarBackground}"  VerticalAlignment="Top">
-                        <TextBlock Text="{Binding Title}" FontSize="{StaticResource TitleTextSizeDefault}" Foreground="{StaticResource AppBarForeground}" Style="{StaticResource TitleStyle}" MaxLines="4" Margin="24,6,24,6"/>
-                    </StackPanel>
-                </DataTemplate>
-            </was_controls:ReadingWebView.FlyoutTemplate>
-        </was_controls:ReadingWebView>
+        <was_controls:HtmlViewer
+            Margin="12,0"
+            Html="{x:Bind ViewModel.SelectedItem.Description, Mode=OneWay}"
+			MaxWidth="800"
+            Background="Transparent"
+            Foreground="{StaticResource DescriptionForeground}"
+            FontSize="{Binding BodyFontSize, ElementName=root}"
+            Header="{x:Bind ViewModel.SelectedItem, Mode=OneWay}"
+            HeaderTemplate="{StaticResource HtmlViewerHeaderTemplate}"
+			ASideLeftVisibility="Collapsed" ASideRightVisibility="Collapsed">
+        </was_controls:HtmlViewer>
     </Grid>
 </local:BaseDetailLayout>

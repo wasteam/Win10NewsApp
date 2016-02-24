@@ -11,9 +11,10 @@
 			<Color x:Key="DescriptionForegroundColor">#5d748a</Color>
 			<Color x:Key="AppBarBackgroundColor">#0078d7</Color>
 			<Color x:Key="AppBarForegroundColor">#ffffff</Color>
-			<Color x:Key="NavigationPaneBackgroundColor">#6cade1</Color>
+			<Color x:Key="NavigationPaneBackgroundColor">#0078d7</Color>
 			<Color x:Key="NavigationPaneTextColor">#ffffff</Color>
-			<Color x:Key="NavigationPaneButtonColor">#004174</Color>
+			<Color x:Key="NavigationPaneButtonColor">#0078d7</Color>
+			<Color x:Key="NavigationPaneButtonForegroundColor">#ffffff</Color>
 			<Color x:Key="BoxBackgroundColor">#0078d7</Color>
 			<Color x:Key="BoxForegroundColor">#ffffff</Color>
         </ResourceDictionary>
@@ -28,6 +29,7 @@
             <Color x:Key="NavigationPaneBackgroundColor">#000000</Color>
             <Color x:Key="NavigationPaneTextColor">#ffffff</Color>
             <Color x:Key="NavigationPaneButtonColor">#666666</Color>
+			<Color x:Key="NavigationPaneButtonForegroundColor">#000000</Color>
             <Color x:Key="BoxBackgroundColor">#000000</Color>
             <Color x:Key="BoxForegroundColor">#ffffff</Color>
         </ResourceDictionary>

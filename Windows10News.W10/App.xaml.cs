@@ -4,7 +4,7 @@
 //    Copyright (C) 2015 by Microsoft Corporation.  All rights reserved.
 // </copyright>
 //
-// <createdOn>10/22/2015 10:25:19 AM</createdOn>
+// <createdOn>2/24/2016 2:21:07 PM</createdOn>
 //
 //---------------------------------------------------------------------------
 
@@ -61,7 +61,6 @@ namespace Windows10News
 #endif
 
             GetAppData();
-            SetupTiles();
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -90,7 +89,7 @@ namespace Windows10News
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(Shell), e.Arguments);
+                rootFrame.Navigate(typeof(PivotShell), e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();
@@ -137,18 +136,6 @@ namespace Windows10News
             }
         }
 
-        private async void SetupTiles()
-        {
-            if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily.ToLower() != "windows.iot")
-            {
-                var init = ApplicationData.Current.LocalSettings.Values[LocalSettingNames.TilesInitialized];
-                if (init == null || (init is bool && !(bool)init))
-                {
-                    await TileServices.CreateLiveTile(@"Assets\Tiles\tiles.xml");
-                    ApplicationData.Current.LocalSettings.Values[LocalSettingNames.TilesInitialized] = true;
-                }
-            }
-        }
 
         /// <summary>
         /// Invoked when application execution is being suspended.  Application state is saved

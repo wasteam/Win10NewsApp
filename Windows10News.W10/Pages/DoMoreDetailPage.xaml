@@ -1,0 +1,65 @@
+<Page
+    x:Class="Windows10News.Pages.DoMoreDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:was_actions="using:AppStudio.Uwp.Actions"
+    xmlns:was_controls="using:AppStudio.Uwp.Controls"
+    xmlns:vm="using:Windows10News.ViewModels"
+    xmlns:layouts="using:Windows10News.Layouts.Detail"
+	xmlns:list_layouts="using:Windows10News.Layouts.List"
+    xmlns:controls="using:Windows10News.Layouts.Controls"
+    xmlns:triggers="using:Windows10News.Triggers"
+    x:Name="root"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    d:DataContext="{d:DesignData Source=/Assets/Design/DetailDesignData.json, Type=vm:DesignViewModel, IsDesignTimeCreatable=true}"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <was_controls:VisualBreakpoints x:Name="ResponsiveBehaviorsVBP" ConfigFile="/Assets/ResponsiveBehaviorsVBP.json"></was_controls:VisualBreakpoints>
+    </Page.Resources>
+    <Grid Background="{StaticResource AppBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" x:Name="topBarBackground" Grid.ColumnSpan="2" Background="{StaticResource AppBarBackground}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="48" Visibility="{x:Bind ViewModel.IsFullScreen, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=true, Mode=OneWay}">
+            <TextBlock x:Name="appTitle" Margin="{Binding Active.pageTitleMargin, Source={StaticResource ResponsiveBehaviorsVBP}}" Text="{x:Bind ViewModel.SelectedItem.PageTitle, Mode=OneWay}" Foreground="{StaticResource AppBarForeground}" FontSize="{StaticResource AppTitleTextSizeDefault}" VerticalAlignment="Center" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" MaxLines="1"/>
+        </Grid>
+        <was_actions:ActionsCommandBar 
+            x:Name="appBar"
+            ActionsSource="{Binding ViewModel.SelectedItem.Actions}" Style="{StaticResource WasCommandBarStyle}"
+            Background="{StaticResource AppBarBackground}"
+            Foreground="{StaticResource AppBarForeground}"
+            Visibility="{Binding ViewModel.IsFullScreen, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=true}"
+            Grid.Row="{Binding Active.appBarRow, Source={StaticResource ResponsiveBehaviorsVBP}}"
+            Grid.Column="{Binding Active.appBarColumn, Source={StaticResource ResponsiveBehaviorsVBP}}"
+            Grid.ColumnSpan="{Binding Active.appBarColumnSpan, Source={StaticResource ResponsiveBehaviorsVBP}}">
+            <was_actions:ActionsCommandBar.CommandBarOverflowPresenterStyle>
+                <Style TargetType="CommandBarOverflowPresenter">
+                    <Setter Property="Background" Value="{StaticResource AppBarBackground}"/>
+                </Style>
+            </was_actions:ActionsCommandBar.CommandBarOverflowPresenterStyle>
+			<was_actions:ActionsCommandBar.PrimaryCommands>
+            
+                <AppBarButton x:Uid="ShowInfoButton" Icon="DockBottom" Command="{Binding ViewModel.ShowInfoCommand, ElementName=root}" Style="{StaticResource WasAppBarButtonStyle}"/>
+                <AppBarButton x:Uid="FullScreenButton" Icon="FullScreen" Command="{Binding ViewModel.FullScreenCommand, ElementName=root}" Style="{StaticResource WasAppBarButtonStyle}"/>            
+			</was_actions:ActionsCommandBar.PrimaryCommands>
+            <was_actions:ActionsCommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="ShareItemButton" Icon="ReShare" Command="{Binding Source={StaticResource ActionCommands}, Path=Share}" Foreground="{StaticResource AppBarForeground}" Style="{StaticResource WasAppBarButtonStyle}"/>
+                <AppBarButton x:Uid="ShowPresentationButton" Icon="SlideShow" Command="{Binding ViewModel.ShowPresentationCommand, ElementName=root}" Style="{StaticResource WasAppBarButtonStyle}"/>
+            </was_actions:ActionsCommandBar.SecondaryCommands>
+        </was_actions:ActionsCommandBar>
+        <Grid Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+              Grid.Row="1" Grid.ColumnSpan="2"
+              Visibility="{Binding ViewModel.IsFullScreen, Converter={StaticResource BoolToVisibilityConverter}}">
+        </Grid>
+        <layouts:PhotoDetailLayout Grid.Row="1" Grid.ColumnSpan="2" x:Name="mainPanel" ViewModel="{x:Bind ViewModel}" BodyFontSize="{StaticResource DescriptionTextSizeNormal}"/>
+    </Grid>
+</Page>

@@ -14,10 +14,6 @@ namespace Windows10News.Layouts.Detail
             InitializeComponent();
         }
 
-        public override void UpdateFontSize()
-        {
-        }
-
         private void WebView_Unloaded(object sender, RoutedEventArgs e)
         {
             WebView webView = sender as WebView;

@@ -9,22 +9,11 @@
     <x:Double x:Key="DescriptionTextSizeNormal">20.0</x:Double>
     <x:Double x:Key="DescriptionTextSizeSmall">16.0</x:Double>
     <x:Double x:Key="TitleTextSizeDefault">24.0</x:Double>
+    <x:Double x:Key="AppTitleTextSizeDefault">21.0</x:Double>
 
     <!--Home-->
     <x:Double x:Key="SectionTitleVeryHighResolutions">30</x:Double>
     <x:Double x:Key="SectionTitleHighResolutions">26</x:Double>
     <x:Double x:Key="SectionHeaderMediumResolutions">20</x:Double>
     <x:Double x:Key="SectionHeaderLowResolutions">16</x:Double>
-    <x:Double x:Key="SectionHeaderVeryLowResolutions">14</x:Double>
-
-    <!--List-->
-    <x:Double x:Key="ListTitleTextHighResolutions">21</x:Double>
-    <x:Double x:Key="ListTitleTextMediumResolutions">19</x:Double>
-    <x:Double x:Key="ListTitleTextLowResolutions">17</x:Double>
-    <x:Double x:Key="ListTitleTextVeryLowResolutions">15</x:Double>
-
-    <x:Double x:Key="ListSubTitleTextHighResolutions">19</x:Double>
-    <x:Double x:Key="ListSubTitleTextMediumResolutions">17</x:Double>
-    <x:Double x:Key="ListSubTitleTextLowResolutions">15</x:Double>
-    <x:Double x:Key="ListSubTitleTextVeryLowResolutions">13</x:Double>
 </ResourceDictionary>

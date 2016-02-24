@@ -119,4 +119,13 @@
             </Setter.Value>
         </Setter>
     </Style>
+	<Style x:Key="AppBarAddToCalendar" TargetType="AppBarButton" BasedOn="{StaticResource WasAppBarButtonStyle}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <SymbolIcon Symbol="CalendarReply"></SymbolIcon>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

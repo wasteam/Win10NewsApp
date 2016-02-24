@@ -183,12 +183,6 @@
   <data name="SmallTextButton.Label" xml:space="preserve">
     <value>small text</value>
   </data>
-  <data name="TouchDevelopBy.Text" xml:space="preserve">
-    <value>by</value>
-  </data>
-  <data name="TouchDevelopPlay.Text" xml:space="preserve">
-    <value>Play</value>
-  </data>
   <data name="SectionListItem.ErrorText" xml:space="preserve">
     <value>There was an unexpected error loading the section data. Try to refresh later.</value>
   </data>
@@ -234,7 +228,7 @@
   <data name="NarrationTitle" xml:space="preserve">
     <value>title</value>
   </data>
-    <data name="NavigationPaneAbout" xml:space="preserve">
+  <data name="NavigationPaneAbout" xml:space="preserve">
     <value>About</value>
   </data>
   <data name="NavigationPanePrivacy" xml:space="preserve">
@@ -254,5 +248,29 @@
   </data>
   <data name="AboutOpenProjectURL.Content" xml:space="preserve">
     <value>Open project URL</value>
+  </data>
+  <data name="LoadingRelatedContent" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="ThereIsNotRelatedContent" xml:space="preserve">
+    <value>There is no related content.</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>type search text...</value>
+  </data>
+  <data name="SearchResultTxt.Text" xml:space="preserve">
+    <value>Search results for:</value>
+  </data>
+  <data name="SearchNoResultsTxt.Text" xml:space="preserve">
+    <value>Not results found.</value>
+  </data>
+  <data name="RoamingWarning.Text" xml:space="preserve">
+    <value>Roaming is not enabled in this device. Data stored on this device will not be replicated in the rest of your devices.</value>
+  </data>
+  <data name="NoFavoritesTxt.Text" xml:space="preserve">
+    <value>Looks that there is nothing here. Navigate through the application and add your items hear by tapping or clicking in the icon</value>
+  </data>
+  <data name="NoFavoritesTxt.Text" xml:space="preserve">
+    <value>Looks that there is nothing here. Navigate through the application and add your items hear by tapping or clicking in the icon</value>
   </data>
 </root>

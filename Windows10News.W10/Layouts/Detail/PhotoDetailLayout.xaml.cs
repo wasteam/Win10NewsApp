@@ -33,10 +33,6 @@ namespace Windows10News.Layouts.Detail
             set { SetValue(MaxHProperty, value); }
         }
 
-        public override void UpdateFontSize()
-        {
-        }
-
         private void ScrollViewer_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             MaxH = e.NewSize.Height;
