@@ -1,8 +1,7 @@
 # Win10NewsApp
 Sample app created with App Studio that collect the most important feeds about Windows 10.
 
-This app has been created with [Windows App Studio](http://appstudio.windows.com) 
-and modified with Visual Studio.
+This app has been created with [Windows App Studio](http://appstudio.windows.com)
 
 Download the App!
 --------------
